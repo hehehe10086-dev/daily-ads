@@ -15,7 +15,7 @@
 - 📸 **上传照片**：产品图 + 环境图 + 细节图
 - ✍️ **填写信息**：品牌名、一句卖点、CTA
 - 🎬 **选一个调性**：时尚高级 / 温暖治愈 / 潮流动感 / 简约现代
-- 📥 **下载视频**：1080×1920 WebM · 直接发朋友圈 / 抖音 / 视频号 / 小红书
+- 📥 **下载 MP4 视频**：1080×1920 · 手机原生播放 · 直接发朋友圈 / 抖音 / 视频号 / 小红书
 
 ---
 
@@ -75,10 +75,13 @@ git push -u origin main
 | 调色 | 多层 `globalCompositeOperation` 堆叠模拟 LUT |
 | 字幕动效 | 字符级关键帧（revealChars / kineticType / slamIn / wordFade / slideLeft） |
 | 背景音乐 | Web Audio API 实时合成（4 套调性专属编曲） |
-| 视频导出 | `MediaRecorder` + `canvas.captureStream()` → WebM |
+| **视频导出** | **WebCodecs `VideoEncoder` + `AudioEncoder` + `mp4-muxer` → MP4 (H.264 + AAC)** |
+| 备用路径 | 旧浏览器自动回退到 `MediaRecorder` WebM |
 | 字体 | Google Fonts CDN（Noto Serif SC / Instrument Serif / JetBrains Mono） |
 
 全部逻辑在客户端执行——用户隐私不上传任何地方，服务器成本为零，无限扩展。
+
+**为什么是 MP4？** iPhone 原生不播 WebM，微信朋友圈 / 抖音 / 视频号上传 WebM 会被拒。MP4（H.264 + AAC）是手机和所有社交平台通吃的唯一格式。
 
 ---
 
