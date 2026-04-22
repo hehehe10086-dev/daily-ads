@@ -1,0 +1,2382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>三张照片，一支广告 · 日产广告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #EFE9DC; --bg-deep: #E6DFCE;
+    --ink: #141414; --ink-soft: #2C2925;
+    --muted: #7A736A; --line: #1B1B1B;
+    --accent: #C73E2E; --accent-deep: #9C2D1F;
+    --paper: #F8F4E9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 300; line-height: 1.55;
+    overflow-x: hidden; position: relative;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1; mix-blend-mode: multiply; opacity: 0.5;
+  }
+
+  /* ================ TOP BAR ================ */
+  .topbar {
+    position: relative; z-index: 10;
+    padding: 24px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .brand { font-family: 'Noto Serif SC', serif; font-weight: 900; font-size: 22px; letter-spacing: -0.02em; display: flex; align-items: baseline; gap: 10px; }
+  .brand-mark { display: inline-block; width: 12px; height: 12px; background: var(--accent); transform: translateY(1px); }
+  .brand-en { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 16px; color: var(--muted); }
+  .top-meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-soft); display: flex; gap: 28px; align-items: center; }
+  .top-meta .live::before { content: "●"; color: var(--accent); margin-right: 6px; animation: pulse 1.6s infinite; }
+  @keyframes pulse { 50% { opacity: 0.3; } }
+  .top-cta { background: var(--ink); color: var(--paper); padding: 10px 18px; border: 1px solid var(--ink); font-family: 'Noto Sans SC', sans-serif; font-weight: 500; font-size: 13px; text-decoration: none; cursor: pointer; transition: background 0.2s ease; }
+  .top-cta:hover { background: var(--accent); border-color: var(--accent); }
+
+  /* ================ HERO ================ */
+  .hero { position: relative; padding: 70px 40px 110px; border-bottom: 1px solid var(--line); overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: end; max-width: 1400px; margin: 0 auto; }
+  .hero-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 36px; display: inline-flex; align-items: center; gap: 12px; }
+  .hero-tag::before { content: ""; width: 28px; height: 1px; background: var(--accent); }
+  .hero-title { font-family: 'Noto Serif SC', serif; font-weight: 900; font-size: clamp(54px, 8vw, 124px); line-height: 0.95; letter-spacing: -0.04em; color: var(--ink); margin-bottom: 36px; }
+  .hero-title .num { font-family: 'Instrument Serif', serif; font-weight: 400; font-style: italic; color: var(--accent); padding: 0 6px; }
+  .hero-title .arrow { font-family: 'Instrument Serif', serif; font-weight: 400; color: var(--ink); margin: 0 8px; font-style: italic; }
+  .hero-sub { font-size: 18px; line-height: 1.7; color: var(--ink-soft); max-width: 520px; font-weight: 400; }
+  .hero-sub strong { font-weight: 700; color: var(--ink); border-bottom: 2px solid var(--accent); padding-bottom: 1px; }
+  .hero-actions { display: flex; gap: 18px; margin-top: 42px; align-items: center; }
+  .btn-primary { background: var(--ink); color: var(--paper); padding: 16px 28px; border: 1px solid var(--ink); font-family: 'Noto Sans SC', sans-serif; font-weight: 500; font-size: 15px; text-decoration: none; cursor: pointer; display: inline-flex; align-items: center; gap: 12px; transition: all 0.25s ease; }
+  .btn-primary:hover { background: var(--accent); border-color: var(--accent); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+  .btn-secondary { color: var(--ink); padding: 16px 0; font-family: 'Noto Sans SC', sans-serif; font-weight: 500; font-size: 15px; text-decoration: none; border-bottom: 1px solid var(--ink); cursor: pointer; background: none; border-top: none; border-left: none; border-right: none; }
+
+  .hero-right { position: relative; height: 520px; }
+  .stack-card { position: absolute; width: 220px; height: 290px; background: var(--paper); border: 1px solid var(--line); box-shadow: 7px 7px 0 var(--ink); padding: 14px; display: flex; flex-direction: column; justify-content: space-between; }
+  .stack-card .head { display: flex; justify-content: space-between; align-items: center; }
+  .stack-card .num { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 22px; color: var(--muted); }
+  .stack-card .label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); }
+  .stack-card .placeholder { flex: 1; margin: 12px 0 8px; background: repeating-linear-gradient(45deg, transparent 0, transparent 8px, rgba(20,20,20,0.05) 8px, rgba(20,20,20,0.05) 9px), var(--bg-deep); border: 1px solid rgba(20,20,20,0.15); display: flex; align-items: center; justify-content: center; font-family: 'Instrument Serif', serif; font-style: italic; color: var(--muted); font-size: 13px; position: relative; }
+  .stack-card .placeholder::after { content: ""; position: absolute; inset: 6px; border: 1px dashed rgba(20,20,20,0.18); }
+  .stack-card .foot { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 0.1em; }
+  .stack-card.c1 { top: 20px; left: 0; transform: rotate(-7deg); }
+  .stack-card.c2 { top: 50px; left: 110px; transform: rotate(2deg); z-index: 2; }
+  .stack-card.c3 { top: 25px; left: 220px; transform: rotate(8deg); }
+
+  .stack-flow { position: absolute; bottom: 165px; left: 50%; transform: translateX(-50%); text-align: center; z-index: 4; }
+  .stack-flow .ai-mark { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 22px; color: var(--accent); display: inline-flex; align-items: center; gap: 12px; background: var(--bg); padding: 6px 14px; border: 1px solid var(--line); }
+  .stack-flow .ai-mark::before, .stack-flow .ai-mark::after { content: ""; width: 24px; height: 1px; background: var(--ink); }
+  .result-card { position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%) rotate(-2deg); width: 240px; height: 130px; background: var(--ink); color: var(--paper); border: 1px solid var(--line); box-shadow: -6px 6px 0 var(--accent); padding: 14px; display: flex; flex-direction: column; justify-content: space-between; z-index: 5; }
+  .result-card .head { display: flex; justify-content: space-between; align-items: flex-start; }
+  .result-card .label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--accent); }
+  .result-card .duration { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 14px; color: var(--paper); }
+  .result-card .play { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--paper); display: flex; align-items: center; justify-content: center; align-self: center; margin-top: 4px; }
+  .result-card .play::before { content: ""; width: 0; height: 0; border-left: 9px solid var(--paper); border-top: 6px solid transparent; border-bottom: 6px solid transparent; margin-left: 3px; }
+  .result-card .foot { font-family: 'Noto Serif SC', serif; font-weight: 700; font-size: 13px; }
+  .corner-mark { position: absolute; top: 24px; right: 40px; font-family: 'Instrument Serif', serif; font-style: italic; font-size: 13px; color: var(--muted); text-align: right; line-height: 1.3; }
+  .corner-mark span { display: block; color: var(--accent); font-size: 11px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.15em; text-transform: uppercase; font-style: normal; }
+
+  /* ================ MARQUEE ================ */
+  .marquee-wrap { background: var(--ink); color: var(--paper); border-bottom: 1px solid var(--line); overflow: hidden; padding: 22px 0; position: relative; z-index: 3; }
+  .marquee { display: flex; white-space: nowrap; animation: scroll 50s linear infinite; font-family: 'Noto Serif SC', serif; font-weight: 700; font-size: 28px; letter-spacing: -0.01em; }
+  .marquee-track { display: flex; flex-shrink: 0; }
+  .marquee-item { margin: 0 48px; display: inline-flex; align-items: center; }
+  .marquee-item::after { content: "✦"; color: var(--accent); font-size: 18px; margin-left: 96px; }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ================ STATEMENT ================ */
+  .statement { padding: 140px 40px; border-bottom: 1px solid var(--line); }
+  .statement-inner { max-width: 1300px; margin: 0 auto; }
+  .section-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 56px; display: flex; align-items: center; gap: 16px; }
+  .section-label::before { content: ""; width: 40px; height: 1px; background: var(--ink); }
+  .big-statement { font-family: 'Noto Serif SC', serif; font-weight: 900; font-size: clamp(44px, 6vw, 96px); line-height: 1.05; letter-spacing: -0.035em; margin-bottom: 32px; }
+  .strike { position: relative; color: var(--muted); display: inline-block; }
+  .strike::after { content: ""; position: absolute; left: -4px; right: -4px; top: 52%; height: 5px; background: var(--accent); transform: skewY(-2deg); }
+  .underline-accent { color: var(--accent); font-style: italic; font-family: 'Instrument Serif', serif; font-weight: 400; }
+  .two-col { display: grid; grid-template-columns: 2fr 1fr; gap: 80px; align-items: start; margin-top: 80px; }
+  .lead-quote { font-family: 'Noto Serif SC', serif; font-weight: 500; font-size: 26px; line-height: 1.5; letter-spacing: -0.015em; color: var(--ink); }
+  .lead-quote em { color: var(--accent); font-style: normal; font-weight: 700; }
+  .meta-block { border-left: 1px solid var(--line); padding-left: 28px; }
+  .meta-block .row { margin-bottom: 28px; }
+  .meta-block .key { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .meta-block .val { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 38px; color: var(--ink); line-height: 1; }
+  .meta-block .val sup { font-size: 13px; color: var(--accent); font-style: normal; margin-left: 4px; vertical-align: super; font-family: 'JetBrains Mono', monospace; }
+  .meta-block .val .unit { font-family: 'Noto Serif SC', serif; font-style: normal; font-weight: 700; font-size: 18px; margin-left: 6px; color: var(--ink-soft); }
+
+  /* ================ HOW ================ */
+  .how { padding: 140px 40px; border-bottom: 1px solid var(--line); background: var(--bg-deep); }
+  .how-inner { max-width: 1300px; margin: 0 auto; }
+  .how-headline { font-family: 'Noto Serif SC', serif; font-weight: 900; font-size: clamp(40px, 5vw, 76px); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 24px; }
+  .how-headline em { font-family: 'Instrument Serif', serif; font-style: italic; color: var(--accent); font-weight: 400; }
+  .how-sub { font-size: 17px; color: var(--ink-soft); max-width: 600px; margin-bottom: 80px; line-height: 1.7; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .step { background: var(--paper); padding: 44px 36px 40px; position: relative; min-height: 380px; display: flex; flex-direction: column; }
+  .step-num { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 96px; line-height: 1; color: var(--accent); margin-bottom: 28px; display: block; }
+  .step-title { font-family: 'Noto Serif SC', serif; font-weight: 700; font-size: 26px; margin-bottom: 14px; letter-spacing: -0.02em; }
+  .step-desc { font-size: 15px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 24px; }
+  .step-tag { position: absolute; top: 32px; right: 32px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .step-example { margin-top: auto; padding-top: 20px; border-top: 1px dashed rgba(20,20,20,0.2); font-family: 'Instrument Serif', serif; font-style: italic; font-size: 14px; color: var(--muted); }
+  .step-example strong { font-style: normal; font-family: 'Noto Sans SC', sans-serif; font-weight: 500; color: var(--ink-soft); font-size: 12px; display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+
+  /* ================ CASES ================ */
+  .cases { padding: 140px 40px; border-bottom: 1px solid var(--line); background: var(--ink); color: var(--paper); }
+  .cases-inner { max-width: 1300px; margin: 0 auto; }
+  .cases .section-label { color: rgba(248,244,233,0.5); }
+  .cases .section-label::before { background: var(--paper); }
+  .cases-headline { font-family: 'Noto Serif SC', serif; font-weight: 900; font-size: clamp(44px, 5.5vw, 88px); line-height: 1.05; letter-spacing: -0.035em; margin-bottom: 28px; }
+  .cases-headline em { color: var(--accent); font-style: italic; font-family: 'Instrument Serif', serif; font-weight: 400; }
+  .cases-sub { font-size: 18px; color: rgba(248, 244, 233, 0.6); max-width: 620px; margin-bottom: 80px; line-height: 1.7; }
+  .case-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; }
+  .case-item { padding: 32px 0; border-top: 1px solid rgba(248, 244, 233, 0.15); display: grid; grid-template-columns: 50px 1fr auto; gap: 24px; align-items: center; padding-right: 40px; }
+  .case-item:nth-child(even) { padding-left: 40px; padding-right: 0; border-left: 1px solid rgba(248, 244, 233, 0.15); }
+  .case-item:nth-last-child(-n+2) { border-bottom: 1px solid rgba(248, 244, 233, 0.15); }
+  .case-num { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 20px; color: var(--accent); }
+  .case-title { font-family: 'Noto Serif SC', serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em; margin-bottom: 4px; }
+  .case-desc { font-size: 13px; color: rgba(248, 244, 233, 0.55); }
+  .case-arrow { font-family: 'Instrument Serif', serif; font-style: italic; color: rgba(248, 244, 233, 0.4); font-size: 18px; }
+
+  /* ================ CHANNELS ================ */
+  .channels { padding: 140px 40px; border-bottom: 1px solid var(--line); }
+  .channels-inner { max-width: 1300px; margin: 0 auto; }
+  .channels-headline { font-family: 'Noto Serif SC', serif; font-weight: 900; font-size: clamp(40px, 5vw, 72px); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 80px; max-width: 950px; }
+  .channels-headline .accent { color: var(--accent); font-style: italic; font-family: 'Instrument Serif', serif; font-weight: 400; }
+  .channel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .ch-card { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 32px 28px; background: var(--paper); position: relative; transition: all 0.3s ease; min-height: 200px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; }
+  .ch-card:hover { background: var(--ink); color: var(--paper); }
+  .ch-card:hover .ch-num, .ch-card:hover .ch-tag { color: var(--accent); }
+  .ch-num { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 18px; color: var(--muted); transition: color 0.3s ease; }
+  .ch-name { font-family: 'Noto Serif SC', serif; font-weight: 900; font-size: 36px; letter-spacing: -0.02em; margin-bottom: 6px; line-height: 1.05; }
+  .ch-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); transition: color 0.3s ease; }
+
+  /* ================ CTA ================ */
+  .cta { padding: 160px 40px 140px; text-align: center; border-bottom: 1px solid var(--line); position: relative; background: var(--bg-deep); }
+  .cta-inner { max-width: 900px; margin: 0 auto; }
+  .cta-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 36px; display: inline-flex; align-items: center; gap: 14px; }
+  .cta-tag::before, .cta-tag::after { content: ""; width: 32px; height: 1px; background: var(--accent); }
+  .cta-headline { font-family: 'Noto Serif SC', serif; font-weight: 900; font-size: clamp(44px, 6vw, 96px); line-height: 1.05; letter-spacing: -0.04em; margin-bottom: 28px; }
+  .cta-headline em { color: var(--accent); font-style: italic; font-family: 'Instrument Serif', serif; font-weight: 400; }
+  .cta-sub { font-size: 18px; color: var(--ink-soft); max-width: 580px; margin: 0 auto 56px; line-height: 1.7; }
+  .cta-hero-btn { background: var(--ink); color: var(--paper); padding: 22px 44px; border: 1px solid var(--ink); font-family: 'Noto Serif SC', serif; font-weight: 700; font-size: 18px; cursor: pointer; transition: all 0.25s ease; display: inline-flex; align-items: center; gap: 14px; letter-spacing: 0.02em; }
+  .cta-hero-btn:hover { background: var(--accent); border-color: var(--accent); transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--ink); }
+  .cta-fineprint { margin-top: 22px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
+
+  /* ================ FOOTER ================ */
+  footer { padding: 50px 40px 40px; background: var(--ink); color: var(--paper); position: relative; z-index: 3; }
+  .footer-inner { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; padding-bottom: 50px; border-bottom: 1px solid rgba(248,244,233,0.2); }
+  .footer-brand { font-family: 'Noto Serif SC', serif; font-weight: 900; font-size: 28px; letter-spacing: -0.02em; margin-bottom: 16px; }
+  .footer-tag { font-family: 'Instrument Serif', serif; font-style: italic; color: rgba(248,244,233,0.6); font-size: 16px; line-height: 1.5; max-width: 320px; }
+  .footer-col h4 { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; font-weight: 500; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { font-size: 14px; color: rgba(248,244,233,0.75); margin-bottom: 10px; }
+  .footer-bottom { max-width: 1300px; margin: 0 auto; padding-top: 30px; display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: rgba(248,244,233,0.4); text-transform: uppercase; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; animation: fadeUp 0.9s ease forwards; }
+  .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.25s; } .d3 { animation-delay: 0.4s; } .d4 { animation-delay: 0.55s; }
+
+  /* ================================================================
+     CREATOR OVERLAY — 真实生成广告的工具界面
+     ================================================================ */
+  .creator {
+    position: fixed; inset: 0; z-index: 100;
+    background: var(--bg); color: var(--ink);
+    display: none; flex-direction: column;
+    overflow-y: auto;
+  }
+  .creator.active { display: flex; }
+  .creator-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 40px; border-bottom: 1px solid var(--line);
+    background: var(--bg); position: sticky; top: 0; z-index: 10;
+  }
+  .creator-brand { font-family: 'Noto Serif SC', serif; font-weight: 900; font-size: 20px; display: flex; align-items: baseline; gap: 10px; }
+  .creator-brand .dot { width: 10px; height: 10px; background: var(--accent); display: inline-block; }
+  .creator-brand .sep { color: var(--muted); margin: 0 8px; font-weight: 400; }
+  .creator-brand em { font-family: 'Instrument Serif', serif; font-style: italic; color: var(--muted); font-weight: 400; font-size: 16px; }
+  .creator-progress {
+    display: flex; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; align-items: center;
+  }
+  .creator-progress .pbar { display: flex; gap: 4px; }
+  .creator-progress .pbar span { width: 32px; height: 3px; background: rgba(20,20,20,0.15); }
+  .creator-progress .pbar span.done { background: var(--accent); }
+  .creator-progress .pbar span.active { background: var(--ink); }
+  .creator-close { background: none; border: 1px solid var(--line); padding: 8px 14px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; color: var(--ink); }
+  .creator-close:hover { background: var(--ink); color: var(--paper); }
+
+  .creator-body { flex: 1; padding: 60px 40px 80px; max-width: 1300px; margin: 0 auto; width: 100%; }
+  .creator-step { display: none; animation: fadeUp 0.5s ease; }
+  .creator-step.active { display: block; }
+
+  .step-head { margin-bottom: 48px; }
+  .step-kicker { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; display: inline-flex; align-items: center; gap: 12px; }
+  .step-kicker::before { content: ""; width: 28px; height: 1px; background: var(--accent); }
+  .step-h1 { font-family: 'Noto Serif SC', serif; font-weight: 900; font-size: clamp(40px, 5vw, 68px); line-height: 1.05; letter-spacing: -0.035em; margin-bottom: 14px; }
+  .step-h1 em { font-family: 'Instrument Serif', serif; font-style: italic; color: var(--accent); font-weight: 400; }
+  .step-desc { font-size: 17px; color: var(--ink-soft); max-width: 640px; line-height: 1.65; }
+
+  /* ===== STEP 1: UPLOAD ===== */
+  .uploads { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
+  .upload-slot {
+    aspect-ratio: 3/4;
+    border: 1.5px dashed var(--line);
+    background: var(--paper);
+    position: relative;
+    cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: all 0.2s ease;
+    overflow: hidden;
+  }
+  .upload-slot:hover { background: var(--bg-deep); border-color: var(--accent); }
+  .upload-slot.dragover { background: var(--bg-deep); border-color: var(--accent); border-style: solid; }
+  .upload-slot.filled { border-style: solid; cursor: default; }
+  .upload-slot input[type=file] { display: none; }
+  .upload-slot .slot-num { position: absolute; top: 14px; left: 16px; font-family: 'Instrument Serif', serif; font-style: italic; font-size: 22px; color: var(--muted); z-index: 2; }
+  .upload-slot .slot-label { position: absolute; top: 16px; right: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); z-index: 2; }
+  .upload-slot .slot-hint { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 32px; color: var(--muted); margin-bottom: 8px; }
+  .upload-slot .slot-main { font-family: 'Noto Serif SC', serif; font-weight: 700; font-size: 22px; color: var(--ink); margin-bottom: 6px; }
+  .upload-slot .slot-sub { font-size: 13px; color: var(--muted); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em; }
+  .upload-slot img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .upload-slot .slot-remove {
+    position: absolute; top: 12px; right: 12px;
+    background: rgba(20,20,20,0.85); color: var(--paper);
+    width: 30px; height: 30px; border-radius: 50%;
+    display: none; align-items: center; justify-content: center;
+    border: none; cursor: pointer; z-index: 3;
+    font-family: 'Instrument Serif', serif; font-size: 18px;
+  }
+  .upload-slot.filled .slot-remove { display: flex; }
+  .upload-slot.filled .slot-num, .upload-slot.filled .slot-label {
+    background: rgba(248,244,233,0.9); padding: 3px 8px;
+  }
+  .upload-slot.filled .slot-hint, .upload-slot.filled .slot-main, .upload-slot.filled .slot-sub { display: none; }
+
+  .example-hint {
+    font-family: 'Instrument Serif', serif; font-style: italic;
+    font-size: 15px; color: var(--muted);
+    text-align: center; padding: 8px 16px;
+    border: 1px solid rgba(20,20,20,0.15); background: var(--paper);
+    border-radius: 40px; display: inline-block;
+  }
+
+  .upload-tips {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+    padding: 32px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    margin-bottom: 48px;
+  }
+  .upload-tip .key { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .upload-tip .val { font-family: 'Noto Serif SC', serif; font-size: 16px; line-height: 1.55; color: var(--ink); font-weight: 500; }
+
+  .step-actions { display: flex; gap: 16px; align-items: center; justify-content: space-between; padding-top: 16px; }
+  .step-actions .left { display: flex; gap: 16px; align-items: center; }
+  .btn-next { background: var(--ink); color: var(--paper); padding: 18px 32px; border: 1px solid var(--ink); font-family: 'Noto Serif SC', serif; font-weight: 700; font-size: 16px; cursor: pointer; display: inline-flex; align-items: center; gap: 12px; transition: all 0.25s; letter-spacing: 0.02em; }
+  .btn-next:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+  .btn-next:disabled { opacity: 0.3; cursor: not-allowed; }
+  .btn-back { background: none; border: none; color: var(--ink-soft); font-size: 14px; cursor: pointer; font-family: 'Noto Sans SC', sans-serif; padding: 8px 0; border-bottom: 1px solid var(--ink-soft); }
+  .btn-back:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ===== STEP 2: BRIEF ===== */
+  .brief-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; }
+  .brief-form { display: flex; flex-direction: column; gap: 28px; }
+  .field { display: flex; flex-direction: column; gap: 10px; }
+  .field label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+  .field label em { color: var(--accent); font-style: normal; }
+  .field .hint { font-size: 12px; color: var(--muted); font-family: 'Instrument Serif', serif; font-style: italic; }
+  .field input[type=text] {
+    background: var(--paper); border: 1px solid var(--line);
+    padding: 16px 18px; font-family: 'Noto Serif SC', serif; font-size: 18px;
+    color: var(--ink); outline: none; font-weight: 500;
+  }
+  .field input[type=text]:focus { border-color: var(--accent); }
+
+  .vibe-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .vibe-card {
+    border: 1px solid var(--line); padding: 18px 20px; background: var(--paper);
+    cursor: pointer; transition: all 0.2s; position: relative;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .vibe-card:hover { background: var(--bg-deep); }
+  .vibe-card.selected { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .vibe-card.selected .vname { color: var(--paper); }
+  .vibe-card.selected .vtag { color: var(--accent); }
+  .vibe-card .vname { font-family: 'Noto Serif SC', serif; font-weight: 700; font-size: 20px; letter-spacing: -0.01em; }
+  .vibe-card .vtag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+  .vibe-card .vdesc { font-size: 13px; color: inherit; opacity: 0.75; }
+
+  .category-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    border: 1px solid var(--line); padding: 8px 14px;
+    font-family: 'Noto Serif SC', serif; font-size: 14px;
+    background: var(--paper); cursor: pointer; transition: all 0.2s;
+    font-weight: 500;
+  }
+  .chip:hover { background: var(--bg-deep); }
+  .chip.selected { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  .brief-preview {
+    background: var(--ink); color: var(--paper); padding: 32px;
+    position: sticky; top: 100px; align-self: start;
+    border: 1px solid var(--line);
+  }
+  .preview-kicker { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  .preview-h { font-family: 'Noto Serif SC', serif; font-size: 22px; font-weight: 700; line-height: 1.3; letter-spacing: -0.01em; margin-bottom: 24px; }
+  .preview-h em { font-family: 'Instrument Serif', serif; font-style: italic; color: var(--accent); font-weight: 400; }
+  .preview-thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 20px; }
+  .preview-thumb { aspect-ratio: 3/4; background: rgba(248,244,233,0.1); position: relative; overflow: hidden; }
+  .preview-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .preview-thumb span { position: absolute; top: 6px; left: 8px; font-family: 'Instrument Serif', serif; font-style: italic; font-size: 14px; color: var(--paper); opacity: 0.8; }
+  .preview-list { display: flex; flex-direction: column; gap: 12px; padding-top: 20px; border-top: 1px solid rgba(248,244,233,0.2); }
+  .preview-row { display: flex; justify-content: space-between; font-size: 13px; }
+  .preview-row .k { color: rgba(248,244,233,0.5); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .preview-row .v { font-family: 'Noto Serif SC', serif; font-weight: 500; text-align: right; max-width: 60%; }
+
+  /* ===== STEP 3: RENDERING ===== */
+  .render-wrap { text-align: center; padding: 40px 0 80px; }
+  .render-stage {
+    margin: 0 auto 40px; width: 360px; aspect-ratio: 9/16;
+    background: #000; position: relative; overflow: hidden;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(255,255,255,0.05);
+  }
+  .render-stage canvas { width: 100%; height: 100%; display: block; }
+  .render-stage .render-overlay {
+    position: absolute; inset: 0; background: rgba(0,0,0,0.65); color: var(--paper);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-family: 'Noto Serif SC', serif; padding: 20px; text-align: center;
+  }
+  .render-overlay .big-num { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 64px; color: var(--accent); line-height: 1; margin-bottom: 8px; }
+  .render-overlay .label-sm { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px; }
+  .render-overlay .progbar { width: 200px; height: 2px; background: rgba(248,244,233,0.15); margin-bottom: 14px; position: relative; }
+  .render-overlay .progfill { position: absolute; top: 0; left: 0; height: 100%; background: var(--accent); transition: width 0.2s linear; }
+  .render-overlay .status { font-size: 14px; opacity: 0.8; }
+  .render-stage.ready .render-overlay { display: none; }
+
+  .render-log {
+    max-width: 480px; margin: 0 auto; text-align: left;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--muted); line-height: 2.2;
+    padding: 24px; border: 1px solid rgba(20,20,20,0.15); background: var(--paper);
+  }
+  .log-line { display: flex; gap: 10px; align-items: flex-start; }
+  .log-line .tick { color: var(--accent); }
+  .log-line.done .tick::before { content: "✓"; }
+  .log-line.active .tick { animation: pulse 1s infinite; }
+  .log-line.active .tick::before { content: "●"; }
+  .log-line.pending { opacity: 0.3; }
+  .log-line.pending .tick::before { content: "○"; }
+
+  /* ===== STEP 4: RESULT ===== */
+  .result-wrap { display: grid; grid-template-columns: auto 1fr; gap: 60px; align-items: start; }
+  .result-player {
+    width: 380px; aspect-ratio: 9/16; background: #000;
+    position: relative; overflow: hidden;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.25), 0 0 0 1px var(--line);
+  }
+  .result-player canvas { width: 100%; height: 100%; display: block; }
+  .result-player .play-overlay {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; z-index: 5;
+  }
+  .result-player .play-overlay .pbtn {
+    width: 68px; height: 68px; border-radius: 50%;
+    background: rgba(0,0,0,0.35); backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    border: 1.5px solid rgba(255,255,255,0.7);
+    transition: all 0.2s;
+  }
+  .result-player .play-overlay:hover .pbtn { background: var(--accent); border-color: var(--accent); }
+  .result-player .play-overlay .pbtn::before {
+    content: ""; width: 0; height: 0;
+    border-left: 18px solid var(--paper); border-top: 12px solid transparent; border-bottom: 12px solid transparent;
+    margin-left: 5px;
+  }
+  .result-player.playing .play-overlay { display: none; }
+  .result-player .timeline-bar {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: rgba(255,255,255,0.15); z-index: 4;
+  }
+  .result-player .timeline-fill {
+    height: 100%; width: 0%; background: var(--accent);
+    transition: width 0.08s linear;
+  }
+
+  .result-info h2 {
+    font-family: 'Noto Serif SC', serif; font-weight: 900; font-size: 48px;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 14px;
+  }
+  .result-info h2 em { font-family: 'Instrument Serif', serif; font-style: italic; color: var(--accent); font-weight: 400; }
+  .result-info .rdesc { font-size: 16px; color: var(--ink-soft); line-height: 1.65; margin-bottom: 28px; max-width: 480px; }
+
+  .result-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 24px 0; margin-bottom: 32px; max-width: 560px; }
+  .rstat { display: flex; flex-direction: column; gap: 6px; }
+  .rstat .rk { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .rstat .rv { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 24px; color: var(--ink); line-height: 1; }
+  .rstat .rv .unit { font-family: 'Noto Serif SC', serif; font-style: normal; font-weight: 700; font-size: 13px; color: var(--ink-soft); margin-left: 3px; }
+
+  .result-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .btn-download { background: var(--accent); color: var(--paper); padding: 18px 32px; border: 1px solid var(--accent); font-family: 'Noto Serif SC', serif; font-weight: 700; font-size: 16px; cursor: pointer; display: inline-flex; align-items: center; gap: 12px; transition: all 0.25s; letter-spacing: 0.02em; }
+  .btn-download:hover { background: var(--accent-deep); border-color: var(--accent-deep); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+  .btn-download:disabled { opacity: 0.5; cursor: progress; }
+  .btn-regen { background: var(--paper); color: var(--ink); padding: 18px 28px; border: 1px solid var(--ink); font-family: 'Noto Sans SC', sans-serif; font-weight: 500; font-size: 15px; cursor: pointer; }
+  .btn-regen:hover { background: var(--ink); color: var(--paper); }
+  .btn-restart { background: none; color: var(--ink-soft); border: none; border-bottom: 1px solid var(--ink-soft); font-family: 'Noto Sans SC', sans-serif; font-size: 14px; cursor: pointer; padding: 4px 0; }
+  .btn-restart:hover { color: var(--accent); border-color: var(--accent); }
+
+  .scene-strip {
+    margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line);
+    max-width: 560px;
+  }
+  .scene-strip .ssub { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .scene-thumbs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+  .scene-thumb { aspect-ratio: 9/16; background: #000; position: relative; overflow: hidden; border: 1px solid rgba(20,20,20,0.1); }
+  .scene-thumb canvas { width: 100%; height: 100%; display: block; }
+  .scene-thumb .sn { position: absolute; top: 4px; left: 5px; font-family: 'Instrument Serif', serif; font-style: italic; font-size: 11px; color: var(--paper); text-shadow: 0 1px 2px rgba(0,0,0,0.6); z-index: 2; }
+
+  /* ================ RESPONSIVE ================ */
+  @media (max-width: 900px) {
+    .hero-grid, .two-col, .steps, .case-list, .channel-grid, .footer-inner { grid-template-columns: 1fr; gap: 40px; }
+    .hero-right { height: 480px; }
+    .corner-mark { display: none; }
+    .case-item, .case-item:nth-child(even) { padding: 24px 0; border-left: none; }
+    .top-meta { display: none; }
+    .topbar { padding: 20px; }
+    .hero, .statement, .how, .cases, .channels, .cta { padding-left: 20px; padding-right: 20px; }
+    .footer-bottom { flex-direction: column; gap: 12px; }
+    .marquee { font-size: 22px; }
+    .creator-body { padding: 32px 20px 60px; }
+    .creator-bar { padding: 18px 20px; }
+    .uploads { grid-template-columns: 1fr; }
+    .upload-tips { grid-template-columns: 1fr; gap: 20px; }
+    .brief-grid { grid-template-columns: 1fr; gap: 40px; }
+    .brief-preview { position: static; }
+    .result-wrap { grid-template-columns: 1fr; gap: 40px; }
+    .result-player { width: 100%; max-width: 320px; margin: 0 auto; }
+    .result-stats { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .scene-thumbs { grid-template-columns: repeat(3, 1fr); }
+    .creator-progress { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== LANDING PAGE ============== -->
+<div class="topbar">
+  <div class="brand">
+    <span class="brand-mark"></span>
+    日产广告
+    <span class="brand-en">/ Daily Ads</span>
+  </div>
+  <div class="top-meta">
+    <span class="live">系统运行中</span>
+    <span>本月已生成 12,847 支</span>
+    <button class="top-cta" onclick="openCreator()">立即体验 →</button>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="corner-mark reveal d1">
+    <span>NO. 001</span>
+    给老板们的<br/>AI 广告日产工具
+  </div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-tag reveal d1">为中小老板 / 店家 / 品牌主理人而生</div>
+      <h1 class="hero-title reveal d2">
+        <span class="num">3</span>张照片<br/>
+        <span class="arrow">→</span>一支广告
+      </h1>
+      <p class="hero-sub reveal d3">
+        你拍三张实景照——产品、门店、菜品都行。我们用 <strong>AI 生成一支完整广告视频</strong>。
+        不用脚本、不用拍摄团队、不用后期，发完就能投。
+      </p>
+      <div class="hero-actions reveal d4">
+        <button class="btn-primary" onclick="openCreator()">立即制作 →</button>
+        <a href="#how" class="btn-secondary">看看怎么做的</a>
+      </div>
+    </div>
+
+    <div class="hero-right reveal d3">
+      <div class="stack-card c1"><div class="head"><span class="num">01</span><span class="label">PHOTO</span></div><div class="placeholder">产品图</div><div class="foot">客户实拍 · IMG_0421</div></div>
+      <div class="stack-card c2"><div class="head"><span class="num">02</span><span class="label">PHOTO</span></div><div class="placeholder">门店图</div><div class="foot">客户实拍 · IMG_0422</div></div>
+      <div class="stack-card c3"><div class="head"><span class="num">03</span><span class="label">PHOTO</span></div><div class="placeholder">细节图</div><div class="foot">客户实拍 · IMG_0423</div></div>
+      <div class="stack-flow"><span class="ai-mark">AI 生成中</span></div>
+      <div class="result-card">
+        <div class="head"><span class="label">OUTPUT</span><span class="duration">00:15</span></div>
+        <div class="play"></div>
+        <div class="foot">广告视频 · 1080p · 已就绪</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee">
+    <div class="marquee-track">
+      <span class="marquee-item">每天发</span><span class="marquee-item">每次新品发</span><span class="marquee-item">每场活动发</span><span class="marquee-item">每个节日发</span><span class="marquee-item">有灵感就发</span><span class="marquee-item">朋友圈 · 抖音 · 视频号 · 小红书</span>
+    </div>
+    <div class="marquee-track" aria-hidden="true">
+      <span class="marquee-item">每天发</span><span class="marquee-item">每次新品发</span><span class="marquee-item">每场活动发</span><span class="marquee-item">每个节日发</span><span class="marquee-item">有灵感就发</span><span class="marquee-item">朋友圈 · 抖音 · 视频号 · 小红书</span>
+    </div>
+  </div>
+</div>
+
+<section class="statement">
+  <div class="statement-inner">
+    <div class="section-label">我们相信</div>
+    <h2 class="big-statement">
+      广告，<span class="strike">不是奢侈品</span><br/>
+      是 AI 时代的<br/>
+      <span class="underline-accent">日用消耗品</span>。
+    </h2>
+    <div class="two-col">
+      <p class="lead-quote">
+        过去做一支广告——找文案、找拍摄、找剪辑、找投放，<em>动辄几万起步</em>。
+        小老板看一眼报价就放弃了。<br/><br/>
+        现在不一样了。今天上了一道新菜、明天换了一批新货、后天搞了一场小活动——
+        每一次都值得一支广告。<em>让广告像朋友圈一样，每天都发。</em>
+      </p>
+      <div class="meta-block">
+        <div class="row"><div class="key">传统流程</div><div class="val">7–14<span class="unit">天</span></div></div>
+        <div class="row"><div class="key">用我们的工具</div><div class="val">3<span class="unit">分钟</span></div></div>
+        <div class="row"><div class="key">单条成本</div><div class="val">¥9<sup>起</sup></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="how-inner">
+    <div class="section-label">三步走完</div>
+    <h2 class="how-headline">你只管 <em>拍三张图</em>，<br/>剩下的交给我们。</h2>
+    <p class="how-sub">不用学剪辑软件、不用懂拍摄技巧。微信发图给我们，等三分钟，广告就到手。</p>
+    <div class="steps">
+      <div class="step"><span class="step-tag">STEP 01</span><span class="step-num">01</span><h3 class="step-title">拍三张照片</h3><p class="step-desc">产品照、门店照、细节照，手机随手拍就行。光线清楚、角度自然，不需要专业相机，不需要打光板。</p><div class="step-example"><strong>举个例子</strong>奶茶店：饮品特写 + 吧台 + 招牌</div></div>
+      <div class="step"><span class="step-tag">STEP 02</span><span class="step-num">02</span><h3 class="step-title">告诉我们想说啥</h3><p class="step-desc">一句话就够。"新品上市，第二杯半价"、"周年庆，全场 8 折"。AI 自己写文案、配音、配音乐。</p><div class="step-example"><strong>举个例子</strong>"草莓季新品 · 限时一周"</div></div>
+      <div class="step"><span class="step-tag">STEP 03</span><span class="step-num">03</span><h3 class="step-title">三分钟拿成片</h3><p class="step-desc">15 秒竖版广告视频，自带文案、配音、转场、BGM。直接发朋友圈、发抖音、发视频号——不用再剪。</p><div class="step-example"><strong>输出格式</strong>MP4 · 1080×1920 · 15s</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cases">
+  <div class="cases-inner">
+    <div class="section-label">这些场景都能用</div>
+    <h2 class="cases-headline">只要有<em>一个理由</em>，<br/>就值得发一支广告。</h2>
+    <p class="cases-sub">你不必等大活动、不必等大节日。生意里每一个小动静，都是和顾客沟通的机会。</p>
+    <div class="case-list">
+      <div class="case-item"><span class="case-num">01</span><div><div class="case-title">新品上架</div><div class="case-desc">新菜单、新款、新口味——第一天就发出去</div></div><span class="case-arrow">→</span></div>
+      <div class="case-item"><span class="case-num">02</span><div><div class="case-title">周年庆 / 开业庆</div><div class="case-desc">用一支视频代替群发文字</div></div><span class="case-arrow">→</span></div>
+      <div class="case-item"><span class="case-num">03</span><div><div class="case-title">节日活动</div><div class="case-desc">中秋、双十一、跨年——每个节都该有一支</div></div><span class="case-arrow">→</span></div>
+      <div class="case-item"><span class="case-num">04</span><div><div class="case-title">限时折扣</div><div class="case-desc">第二件半价、清仓特惠、满减活动</div></div><span class="case-arrow">→</span></div>
+      <div class="case-item"><span class="case-num">05</span><div><div class="case-title">客户好评</div><div class="case-desc">把口碑做成视频再发一遍，转化更高</div></div><span class="case-arrow">→</span></div>
+      <div class="case-item"><span class="case-num">06</span><div><div class="case-title">门店日常</div><div class="case-desc">早晨开门、师傅手作、人气场面——日常即内容</div></div><span class="case-arrow">→</span></div>
+      <div class="case-item"><span class="case-num">07</span><div><div class="case-title">招商加盟</div><div class="case-desc">一支视频替你说清楚加盟优势</div></div><span class="case-arrow">→</span></div>
+      <div class="case-item"><span class="case-num">08</span><div><div class="case-title">招聘启事</div><div class="case-desc">招店员、招厨师，让广告自己跑流量</div></div><span class="case-arrow">→</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="channels">
+  <div class="channels-inner">
+    <div class="section-label">一次生成，到处可发</div>
+    <h2 class="channels-headline">生成完直接发出去——<br/><span class="accent">六大主流渠道，</span>一份内容打天下。</h2>
+    <div class="channel-grid">
+      <div class="ch-card"><span class="ch-num">01</span><div><div class="ch-name">朋友圈</div><div class="ch-tag">WeChat Moments · 私域第一站</div></div></div>
+      <div class="ch-card"><span class="ch-num">02</span><div><div class="ch-name">抖音</div><div class="ch-tag">Douyin · 公域流量主战场</div></div></div>
+      <div class="ch-card"><span class="ch-num">03</span><div><div class="ch-name">视频号</div><div class="ch-tag">Channels · 中老年覆盖</div></div></div>
+      <div class="ch-card"><span class="ch-num">04</span><div><div class="ch-name">小红书</div><div class="ch-tag">RedNote · 种草转化</div></div></div>
+      <div class="ch-card"><span class="ch-num">05</span><div><div class="ch-name">快手</div><div class="ch-tag">Kuaishou · 下沉市场</div></div></div>
+      <div class="ch-card"><span class="ch-num">06</span><div><div class="ch-name">公众号</div><div class="ch-tag">Official Account · 沉淀内容</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="cta">
+  <div class="cta-inner">
+    <div class="cta-tag">现在就开始</div>
+    <h2 class="cta-headline">让你的广告，<br/><em>多到客户记得住你。</em></h2>
+    <p class="cta-sub">现在就上传三张照片，三分钟后，你就能拿到属于自己店铺的第一支广告片。</p>
+    <button class="cta-hero-btn" onclick="openCreator()">立即制作我的第一支广告 →</button>
+    <div class="cta-fineprint">无需注册 · 浏览器直接生成 · 成片归你所有</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">日产广告</div>
+      <p class="footer-tag">Daily Ads — 让广告像朋友圈一样，每天都发。</p>
+    </div>
+    <div class="footer-col"><h4>产品</h4><ul><li>三图成片</li><li>批量制作</li><li>风格定制</li><li>API 接入</li></ul></div>
+    <div class="footer-col"><h4>适用行业</h4><ul><li>餐饮 / 茶饮</li><li>美业 / 服饰</li><li>本地生活</li><li>电商 / 微商</li></ul></div>
+    <div class="footer-col"><h4>联系</h4><ul><li>商务合作</li><li>渠道加盟</li><li>客服支持</li><li>关于我们</li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 日产广告 · Daily Ads</span>
+    <span>Made with AI in China</span>
+  </div>
+</footer>
+
+<!-- ============== CREATOR OVERLAY ============== -->
+<div class="creator" id="creator">
+  <div class="creator-bar">
+    <div class="creator-brand">
+      <span class="dot"></span> 日产广告
+      <span class="sep">·</span>
+      <em>广告生成工作台</em>
+    </div>
+    <div class="creator-progress">
+      <span id="stepLabel">01 / 04 · 上传照片</span>
+      <div class="pbar">
+        <span id="pb1" class="active"></span>
+        <span id="pb2"></span>
+        <span id="pb3"></span>
+        <span id="pb4"></span>
+      </div>
+    </div>
+    <button class="creator-close" onclick="closeCreator()">关闭 ✕</button>
+  </div>
+
+  <div class="creator-body">
+
+    <!-- STEP 1: UPLOAD -->
+    <div class="creator-step active" id="step1">
+      <div class="step-head">
+        <div class="step-kicker">STEP 01 · UPLOAD</div>
+        <h1 class="step-h1">上传三张照片，<br/>我们就能开始<em>「造片」</em>。</h1>
+        <p class="step-desc">产品图、环境图、细节图各一张即可。手机随手拍的也行——我们的AI会自动补光、调色、裁剪。</p>
+      </div>
+
+      <div class="uploads">
+        <label class="upload-slot" for="f1" data-slot="0">
+          <span class="slot-num">01</span>
+          <span class="slot-label">MAIN · 主图</span>
+          <span class="slot-hint">+</span>
+          <span class="slot-main">产品 / 主视觉</span>
+          <span class="slot-sub">点击或拖入图片</span>
+          <input type="file" id="f1" accept="image/*" />
+          <button class="slot-remove" type="button" aria-label="移除">✕</button>
+        </label>
+        <label class="upload-slot" for="f2" data-slot="1">
+          <span class="slot-num">02</span>
+          <span class="slot-label">SCENE · 环境</span>
+          <span class="slot-hint">+</span>
+          <span class="slot-main">门店 / 场景</span>
+          <span class="slot-sub">点击或拖入图片</span>
+          <input type="file" id="f2" accept="image/*" />
+          <button class="slot-remove" type="button" aria-label="移除">✕</button>
+        </label>
+        <label class="upload-slot" for="f3" data-slot="2">
+          <span class="slot-num">03</span>
+          <span class="slot-label">DETAIL · 细节</span>
+          <span class="slot-hint">+</span>
+          <span class="slot-main">细节 / 特写</span>
+          <span class="slot-sub">点击或拖入图片</span>
+          <input type="file" id="f3" accept="image/*" />
+          <button class="slot-remove" type="button" aria-label="移除">✕</button>
+        </label>
+      </div>
+
+      <div class="upload-tips">
+        <div class="upload-tip"><div class="key">建议</div><div class="val">竖版或正方形照片效果最好</div></div>
+        <div class="upload-tip"><div class="key">光线</div><div class="val">自然光 / 门店灯光都可以</div></div>
+        <div class="upload-tip"><div class="key">隐私</div><div class="val">所有处理在浏览器本地完成</div></div>
+      </div>
+
+      <div class="step-actions">
+        <div class="left">
+          <span class="example-hint">或点这里 → <a href="javascript:void(0)" onclick="loadDemoPhotos()" style="color:var(--accent);text-decoration:underline;font-style:italic">载入示例图片</a></span>
+        </div>
+        <button class="btn-next" id="goStep2" disabled onclick="goTo(2)">下一步 · 填写广告内容 →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: BRIEF -->
+    <div class="creator-step" id="step2">
+      <div class="step-head">
+        <div class="step-kicker">STEP 02 · BRIEF</div>
+        <h1 class="step-h1">告诉我们想说什么，<br/>挑一种<em>调性</em>。</h1>
+        <p class="step-desc">只需一句话卖点，加上品牌名。调性决定运镜节奏、配色、字幕动效和背景音乐。</p>
+      </div>
+
+      <div class="brief-grid">
+        <div class="brief-form">
+          <div class="field">
+            <label>品牌 / 店铺名 <em>*</em></label>
+            <input type="text" id="brandName" placeholder="如：兔子家奶茶铺" maxlength="20" />
+            <span class="hint">会出现在片头和片尾</span>
+          </div>
+
+          <div class="field">
+            <label>核心卖点 / 一句话 <em>*</em></label>
+            <input type="text" id="tagline" placeholder="如：草莓季新品 · 限时一周" maxlength="24" />
+            <span class="hint">会作为片中主字幕出现 —— 短有力量</span>
+          </div>
+
+          <div class="field">
+            <label>CTA · 引导行动</label>
+            <input type="text" id="cta" placeholder="如：今日到店第二杯半价" maxlength="20" />
+            <span class="hint">片尾动作号召，非必填</span>
+          </div>
+
+          <div class="field">
+            <label>行业类别</label>
+            <div class="category-chips" id="categoryChips">
+              <div class="chip selected" data-cat="餐饮">餐饮 / 茶饮</div>
+              <div class="chip" data-cat="美业">美业 / 美发</div>
+              <div class="chip" data-cat="零售">零售 / 服饰</div>
+              <div class="chip" data-cat="生活">本地生活</div>
+              <div class="chip" data-cat="电商">电商 / 微商</div>
+              <div class="chip" data-cat="其他">其他</div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>调性 <em>*</em> · 决定成片风格</label>
+            <div class="vibe-grid" id="vibeGrid">
+              <div class="vibe-card selected" data-vibe="elegant">
+                <div class="vname">时尚高级</div>
+                <div class="vtag">ELEGANT · 慢节奏 · 冷调</div>
+                <div class="vdesc">缓推镜头、大字衬线、宽银幕黑边</div>
+              </div>
+              <div class="vibe-card" data-vibe="warm">
+                <div class="vname">温暖治愈</div>
+                <div class="vtag">WARM · 中节奏 · 暖调</div>
+                <div class="vdesc">柔光、胶片颗粒、手写体字幕</div>
+              </div>
+              <div class="vibe-card" data-vibe="dynamic">
+                <div class="vname">潮流动感</div>
+                <div class="vtag">DYNAMIC · 快节奏 · 高对比</div>
+                <div class="vdesc">快切、动态字幕、节拍驱动</div>
+              </div>
+              <div class="vibe-card" data-vibe="modern">
+                <div class="vname">简约现代</div>
+                <div class="vtag">MODERN · 中节奏 · 中性</div>
+                <div class="vdesc">干净、几何字体、克制留白</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="brief-preview">
+          <div class="preview-kicker">AI 创意简报 · 预览</div>
+          <div class="preview-h" id="previewHeadline">准备为 <em>你的品牌</em> 生成一支广告</div>
+          <div class="preview-thumbs" id="previewThumbs">
+            <div class="preview-thumb"><span>01</span></div>
+            <div class="preview-thumb"><span>02</span></div>
+            <div class="preview-thumb"><span>03</span></div>
+          </div>
+          <div class="preview-list">
+            <div class="preview-row"><span class="k">时长</span><span class="v">15 秒</span></div>
+            <div class="preview-row"><span class="k">格式</span><span class="v">1080 × 1920 · 竖屏</span></div>
+            <div class="preview-row"><span class="k">帧率</span><span class="v">30 fps</span></div>
+            <div class="preview-row"><span class="k">分镜</span><span class="v">6 个 × 2.5 秒</span></div>
+            <div class="preview-row"><span class="k">调性</span><span class="v" id="prevVibe">时尚高级</span></div>
+            <div class="preview-row"><span class="k">音乐</span><span class="v" id="prevMusic">AI 合成 · 冷调氛围</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-actions" style="margin-top: 48px;">
+        <button class="btn-back" onclick="goTo(1)">← 返回上传</button>
+        <button class="btn-next" id="goStep3" onclick="goTo(3)">下一步 · 开始生成 →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: RENDERING -->
+    <div class="creator-step" id="step3">
+      <div class="step-head" style="text-align:center; max-width:720px; margin:0 auto 48px;">
+        <div class="step-kicker" style="justify-content:center;">STEP 03 · AI GENERATING</div>
+        <h1 class="step-h1">AI 正在为你<em>造片</em>……</h1>
+        <p class="step-desc" style="margin: 0 auto;">正在分析你的照片，规划分镜、调色、字幕和音乐。整个过程约 15 秒。</p>
+      </div>
+
+      <div class="render-wrap">
+        <div class="render-stage" id="renderStage">
+          <canvas id="previewCanvas" width="540" height="960"></canvas>
+          <div class="render-overlay" id="renderOverlay">
+            <div class="big-num" id="progPct">00</div>
+            <div class="label-sm">正在渲染分镜</div>
+            <div class="progbar"><div class="progfill" id="progFill"></div></div>
+            <div class="status" id="progStatus">分析照片构图 …</div>
+          </div>
+        </div>
+
+        <div class="render-log" id="renderLog">
+          <div class="log-line" data-step="1"><span class="tick"></span><span>分析三张照片 · 提取主色与构图</span></div>
+          <div class="log-line" data-step="2"><span class="tick"></span><span>规划六个分镜 · 节奏曲线匹配调性</span></div>
+          <div class="log-line" data-step="3"><span class="tick"></span><span>电影级调色 · LUT 映射 · 颗粒叠加</span></div>
+          <div class="log-line" data-step="4"><span class="tick"></span><span>动态字幕 · 入场/出场/锚点动画</span></div>
+          <div class="log-line" data-step="5"><span class="tick"></span><span>背景音乐 · Web Audio 实时合成</span></div>
+          <div class="log-line" data-step="6"><span class="tick"></span><span>预览就绪 · 进入剪辑台</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4: RESULT -->
+    <div class="creator-step" id="step4">
+      <div class="step-head">
+        <div class="step-kicker">STEP 04 · PREVIEW & EXPORT</div>
+        <h1 class="step-h1">成片完成。<br/>点击播放<em>预览</em>。</h1>
+        <p class="step-desc">满意就导出视频文件，直接发朋友圈 / 抖音 / 视频号。不满意可以重新生成。</p>
+      </div>
+
+      <div class="result-wrap">
+        <div class="result-player" id="resultPlayer">
+          <canvas id="resultCanvas" width="540" height="960"></canvas>
+          <div class="play-overlay" id="playOverlay" onclick="playResult()">
+            <div class="pbtn"></div>
+          </div>
+          <div class="timeline-bar"><div class="timeline-fill" id="timelineFill"></div></div>
+        </div>
+
+        <div class="result-info">
+          <h2>你的<em>日产</em>广告就绪。</h2>
+          <p class="rdesc">点击左侧播放按钮预览。这支片子是根据你上传的三张照片 + 你填写的卖点，在浏览器中由 AI 引擎实时渲染而成——每次生成都略有不同。</p>
+
+          <div class="result-stats">
+            <div class="rstat"><div class="rk">时长</div><div class="rv">15<span class="unit">s</span></div></div>
+            <div class="rstat"><div class="rk">分镜</div><div class="rv">6<span class="unit">个</span></div></div>
+            <div class="rstat"><div class="rk">格式</div><div class="rv">1080<span class="unit">×1920</span></div></div>
+            <div class="rstat"><div class="rk">类型</div><div class="rv">WebM</div></div>
+          </div>
+
+          <div class="result-actions">
+            <button class="btn-download" id="btnDownload" onclick="downloadVideo()">⬇ 下载视频文件</button>
+            <button class="btn-regen" onclick="regenerate()">↻ 再生成一次</button>
+            <button class="btn-restart" onclick="restartCreator()">重新开始</button>
+          </div>
+
+          <div class="scene-strip">
+            <div class="ssub">— 六个分镜缩略图</div>
+            <div class="scene-thumbs" id="sceneThumbs"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+/* ============================================================
+   广告视频引擎 · Cinematic Vertical Ad Engine
+   ============================================================
+   架构:
+   - 4个调性 × 各自的分镜模板 × 运镜 / 调色 / 字幕 / 音乐
+   - Canvas 1080×1920 实时渲染
+   - Web Audio 合成背景音乐
+   - MediaRecorder 导出 WebM
+   ============================================================ */
+
+// ================ GLOBAL STATE ================
+const state = {
+  photos: [null, null, null], // {file, url, img, palette}
+  brand: '',
+  tagline: '',
+  cta: '',
+  category: '餐饮',
+  vibe: 'elegant',
+  currentStep: 1,
+  renderer: null,
+  musicEngine: null,
+  videoBlob: null
+};
+
+// ================ EASING FUNCTIONS ================
+const Ease = {
+  linear: t => t,
+  easeInCubic:   t => t*t*t,
+  easeOutCubic:  t => 1 - Math.pow(1-t, 3),
+  easeInOutCubic: t => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2,
+  easeOutQuart:  t => 1 - Math.pow(1-t, 4),
+  easeInOutQuart: t => t < 0.5 ? 8*t*t*t*t : 1 - Math.pow(-2*t+2, 4)/2,
+  easeOutExpo:   t => t === 1 ? 1 : 1 - Math.pow(2, -10*t),
+  easeOutBack:   t => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3*Math.pow(t-1, 3) + c1*Math.pow(t-1, 2); }
+};
+
+// ================ COLOR UTILS ================
+function rgbToHsl(r,g,b){
+  r/=255;g/=255;b/=255;
+  const max=Math.max(r,g,b),min=Math.min(r,g,b);
+  let h,s,l=(max+min)/2;
+  if(max===min){h=s=0;}
+  else{
+    const d=max-min;
+    s=l>0.5?d/(2-max-min):d/(max+min);
+    switch(max){
+      case r:h=(g-b)/d+(g<b?6:0);break;
+      case g:h=(b-r)/d+2;break;
+      case b:h=(r-g)/d+4;break;
+    }
+    h/=6;
+  }
+  return[h*360,s*100,l*100];
+}
+
+// Extract palette from image (simple: average of sampled pixels)
+function extractPalette(img) {
+  const c = document.createElement('canvas');
+  const s = 50;
+  c.width = s; c.height = s;
+  const ctx = c.getContext('2d');
+  ctx.drawImage(img, 0, 0, s, s);
+  const data = ctx.getImageData(0, 0, s, s).data;
+  let r=0, g=0, b=0, count=0;
+  let rMax=0, gMax=0, bMax=0, brightness=0;
+  for (let i=0; i<data.length; i+=4) {
+    r += data[i]; g += data[i+1]; b += data[i+2];
+    const br = (data[i]+data[i+1]+data[i+2])/3;
+    if (br > brightness) { brightness = br; rMax = data[i]; gMax = data[i+1]; bMax = data[i+2]; }
+    count++;
+  }
+  const avg = [Math.round(r/count), Math.round(g/count), Math.round(b/count)];
+  const highlight = [rMax, gMax, bMax];
+  return { avg, highlight };
+}
+
+// ================ FILE UPLOAD ================
+const slots = document.querySelectorAll('.upload-slot');
+slots.forEach(slot => {
+  const idx = parseInt(slot.dataset.slot);
+  const input = slot.querySelector('input[type=file]');
+  const removeBtn = slot.querySelector('.slot-remove');
+
+  input.addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (file) handleFile(file, idx, slot);
+  });
+
+  slot.addEventListener('dragover', e => { e.preventDefault(); slot.classList.add('dragover'); });
+  slot.addEventListener('dragleave', () => slot.classList.remove('dragover'));
+  slot.addEventListener('drop', e => {
+    e.preventDefault();
+    slot.classList.remove('dragover');
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.startsWith('image/')) handleFile(file, idx, slot);
+  });
+
+  removeBtn.addEventListener('click', e => {
+    e.preventDefault(); e.stopPropagation();
+    state.photos[idx] = null;
+    slot.classList.remove('filled');
+    const existing = slot.querySelector('img');
+    if (existing) existing.remove();
+    input.value = '';
+    checkUploadsReady();
+    updatePreviewThumbs();
+  });
+});
+
+function handleFile(file, idx, slot) {
+  const url = URL.createObjectURL(file);
+  const img = new Image();
+  img.onload = () => {
+    const palette = extractPalette(img);
+    state.photos[idx] = { file, url, img, palette };
+    
+    // Show preview in slot
+    const oldImg = slot.querySelector('img');
+    if (oldImg) oldImg.remove();
+    const preview = document.createElement('img');
+    preview.src = url;
+    slot.insertBefore(preview, slot.firstChild);
+    slot.classList.add('filled');
+    
+    checkUploadsReady();
+    updatePreviewThumbs();
+  };
+  img.src = url;
+}
+
+function checkUploadsReady() {
+  const count = state.photos.filter(p => p !== null).length;
+  document.getElementById('goStep2').disabled = count < 1;
+  // Allow proceeding even with 1-2; we'll repeat photos as needed
+}
+
+// ================ DEMO PHOTOS (procedurally generated) ================
+function loadDemoPhotos() {
+  // Generate 3 demo photos with gradients + shapes, simulating real photos
+  const configs = [
+    { bg: '#d4a574', fg: '#8b5a3c', shape: 'cup' },   // warm product
+    { bg: '#2a3b4d', fg: '#c89664', shape: 'store' }, // store scene
+    { bg: '#e8dcc4', fg: '#a8623c', shape: 'detail' } // detail
+  ];
+  configs.forEach((cfg, i) => {
+    const c = document.createElement('canvas');
+    c.width = 600; c.height = 800;
+    const ctx = c.getContext('2d');
+    
+    // Gradient background
+    const g = ctx.createRadialGradient(300, 300, 50, 300, 400, 500);
+    g.addColorStop(0, cfg.bg);
+    g.addColorStop(1, shadeColor(cfg.bg, -30));
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, 600, 800);
+    
+    // Noise overlay
+    const noise = ctx.getImageData(0, 0, 600, 800);
+    for (let j = 0; j < noise.data.length; j += 4) {
+      const n = (Math.random() - 0.5) * 30;
+      noise.data[j]   += n;
+      noise.data[j+1] += n;
+      noise.data[j+2] += n;
+    }
+    ctx.putImageData(noise, 0, 0);
+    
+    // Shape as subject
+    ctx.fillStyle = cfg.fg;
+    if (cfg.shape === 'cup') {
+      ctx.beginPath(); ctx.ellipse(300, 450, 140, 180, 0, 0, Math.PI*2); ctx.fill();
+      ctx.fillStyle = shadeColor(cfg.fg, 40);
+      ctx.beginPath(); ctx.ellipse(300, 310, 140, 30, 0, 0, Math.PI*2); ctx.fill();
+    } else if (cfg.shape === 'store') {
+      ctx.fillRect(100, 300, 400, 400);
+      ctx.fillStyle = shadeColor(cfg.fg, 30);
+      ctx.fillRect(150, 400, 100, 200);
+      ctx.fillRect(350, 400, 100, 200);
+      ctx.fillStyle = '#f9e8a8';
+      ctx.fillRect(130, 340, 340, 20);
+    } else {
+      ctx.beginPath(); ctx.arc(300, 400, 120, 0, Math.PI*2); ctx.fill();
+      ctx.strokeStyle = shadeColor(cfg.fg, 20); ctx.lineWidth = 8;
+      ctx.beginPath(); ctx.arc(300, 400, 120, 0, Math.PI*2); ctx.stroke();
+    }
+    
+    // Vignette
+    const vg = ctx.createRadialGradient(300, 400, 200, 300, 400, 500);
+    vg.addColorStop(0, 'rgba(0,0,0,0)');
+    vg.addColorStop(1, 'rgba(0,0,0,0.45)');
+    ctx.fillStyle = vg;
+    ctx.fillRect(0, 0, 600, 800);
+    
+    c.toBlob(blob => {
+      const file = new File([blob], `demo${i+1}.png`, {type:'image/png'});
+      const slot = slots[i];
+      handleFile(file, i, slot);
+    }, 'image/png');
+  });
+  
+  // Auto-fill form too (sync state, not just DOM)
+  const fillField = (id, val, stateKey) => {
+    const el = document.getElementById(id);
+    if (!el.value) { el.value = val; state[stateKey] = val; }
+  };
+  fillField('brandName', '兔子家奶茶铺', 'brand');
+  fillField('tagline', '草莓季新品 · 限时一周', 'tagline');
+  fillField('cta', '今日到店 第二杯半价', 'cta');
+  updatePreviewSummary();
+}
+
+function shadeColor(hex, amt) {
+  let col = hex.replace('#','');
+  const num = parseInt(col, 16);
+  let r = (num >> 16) + amt, g = ((num >> 8) & 0x00FF) + amt, b = (num & 0x0000FF) + amt;
+  r = Math.max(0, Math.min(255, r));
+  g = Math.max(0, Math.min(255, g));
+  b = Math.max(0, Math.min(255, b));
+  return '#' + (r*0x10000 + g*0x100 + b).toString(16).padStart(6,'0');
+}
+
+// ================ FORM HANDLING ================
+document.getElementById('brandName').addEventListener('input', e => { state.brand = e.target.value; updatePreviewSummary(); });
+document.getElementById('tagline').addEventListener('input', e => { state.tagline = e.target.value; updatePreviewSummary(); });
+document.getElementById('cta').addEventListener('input', e => { state.cta = e.target.value; });
+
+document.querySelectorAll('#categoryChips .chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('#categoryChips .chip').forEach(c => c.classList.remove('selected'));
+    chip.classList.add('selected');
+    state.category = chip.dataset.cat;
+  });
+});
+
+document.querySelectorAll('#vibeGrid .vibe-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('#vibeGrid .vibe-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    state.vibe = card.dataset.vibe;
+    updatePreviewSummary();
+  });
+});
+
+const vibeLabels = {
+  elegant: { name:'时尚高级', music:'AI合成 · 冷调氛围'},
+  warm:    { name:'温暖治愈', music:'AI合成 · 暖调钢琴'},
+  dynamic: { name:'潮流动感', music:'AI合成 · 律动节拍'},
+  modern:  { name:'简约现代', music:'AI合成 · 极简节奏'}
+};
+
+function updatePreviewSummary() {
+  const head = document.getElementById('previewHeadline');
+  const brand = state.brand || '你的品牌';
+  const tag = state.tagline;
+  head.innerHTML = tag ? 
+    `为 <em>「${brand}」</em><br/>讲一个 15 秒的故事：<em>${tag}</em>` : 
+    `准备为 <em>${brand}</em> 生成一支广告`;
+  document.getElementById('prevVibe').textContent = vibeLabels[state.vibe].name;
+  document.getElementById('prevMusic').textContent = vibeLabels[state.vibe].music;
+}
+
+function updatePreviewThumbs() {
+  const wrap = document.getElementById('previewThumbs');
+  wrap.innerHTML = '';
+  for (let i = 0; i < 3; i++) {
+    const div = document.createElement('div');
+    div.className = 'preview-thumb';
+    const label = document.createElement('span');
+    label.textContent = '0' + (i+1);
+    div.appendChild(label);
+    if (state.photos[i]) {
+      const img = document.createElement('img');
+      img.src = state.photos[i].url;
+      div.appendChild(img);
+    }
+    wrap.appendChild(div);
+  }
+}
+
+// ================ NAVIGATION ================
+function openCreator() {
+  document.getElementById('creator').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeCreator() {
+  if (state.musicEngine) state.musicEngine.stop();
+  if (state.renderer) state.renderer.pause();
+  document.getElementById('creator').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function goTo(step) {
+  if (step === 2 && !state.photos.some(p => p)) { return; }
+  if (step === 3 && (!state.brand || !state.tagline)) {
+    alert('请先填写品牌名和核心卖点');
+    return;
+  }
+  
+  document.querySelectorAll('.creator-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step' + step).classList.add('active');
+  state.currentStep = step;
+  
+  // Update progress bar
+  ['pb1','pb2','pb3','pb4'].forEach((id,i) => {
+    const el = document.getElementById(id);
+    el.classList.remove('active','done');
+    if (i < step-1) el.classList.add('done');
+    if (i === step-1) el.classList.add('active');
+  });
+  
+  const labels = ['上传照片','填写内容','AI 生成','预览导出'];
+  document.getElementById('stepLabel').textContent = `0${step} / 04 · ${labels[step-1]}`;
+  
+  window.scrollTo(0, 0);
+  
+  if (step === 3) startGeneration();
+  if (step === 4) setupResultPlayer();
+}
+
+function restartCreator() {
+  state.photos = [null, null, null];
+  state.videoBlob = null;
+  slots.forEach(s => {
+    s.classList.remove('filled');
+    const img = s.querySelector('img');
+    if (img) img.remove();
+  });
+  document.querySelectorAll('.upload-slot input').forEach(i => i.value = '');
+  checkUploadsReady();
+  updatePreviewThumbs();
+  goTo(1);
+}
+
+// ================ TIMELINE GENERATION ================
+function generateTimeline(seed) {
+  // Seed controls variation; each regenerate picks different
+  if (seed === undefined) seed = Math.random();
+  
+  // Fill missing photos by repeating
+  const photos = [];
+  for (let i = 0; i < 3; i++) {
+    photos.push(state.photos[i] || state.photos.find(p => p));
+  }
+  
+  const vibe = state.vibe;
+  const brand = state.brand;
+  const tagline = state.tagline;
+  const cta = state.cta || '';
+  
+  // Photo rotation variants (shuffle which photo appears in which scene position)
+  // Each variant preserves the 6-scene feel but mixes the photo assignment
+  const rotations = [
+    [0, 2, 1, 0, 2, 1],  // default: hero-detail-scene-hero-detail-scene
+    [1, 0, 2, 1, 0, 2],  // scene-hero-detail shuffle
+    [2, 1, 0, 2, 1, 0],  // detail-scene-hero
+    [0, 1, 2, 0, 1, 2],  // straight rotation
+    [2, 0, 1, 2, 0, 1]   // detail-hero-scene
+  ];
+  const rot = rotations[Math.floor(seed * rotations.length) % rotations.length];
+  
+  // Each vibe has a distinct 6-scene template (camera/letterbox/grade/text characteristics)
+  const templates = {
+    elegant: [
+      { cam: {type:'slowPush',   from:1.08, to:1.18, dx:[0,-30], dy:[0,-20]}, text: {t:brand, style:'display-serif', anim:'fadeUp', pos:'bottom-center', delay:0.6, hold:1.7}, letterbox: 0.09, grade:'cinematic-cold', grain:0.06 },
+      { cam: {type:'slowPan',    from:1.12, to:1.12, dx:[-60,60],  dy:[0,0]},   text: null,                                                                                       letterbox: 0.09, grade:'cinematic-cold', grain:0.06, flash:true },
+      { cam: {type:'slowPush',   from:1.05, to:1.15, dx:[0,0], dy:[-20,10]}, text: {t:tagline.split(' ')[0]||tagline, style:'display-serif-big', anim:'revealChars', pos:'center', delay:0.2, hold:2.0}, letterbox: 0.1, grade:'cinematic-cold', grain:0.06 },
+      { cam: {type:'tightZoom',  from:1.3,  to:1.15, dx:[20,0], dy:[30,10]}, text: {t:tagline, style:'sub-serif', anim:'fadeUp', pos:'center-lower', delay:0.3, hold:1.8}, letterbox: 0.1, grade:'cinematic-cold', grain:0.06 },
+      { cam: {type:'slowPush',   from:1.08, to:1.14, dx:[0,10], dy:[0,-10]}, text: null,                                                                                          letterbox: 0.1, grade:'cinematic-cold', grain:0.06 },
+      { cam: {type:'slowPush',   from:1.02, to:1.08, dx:[0,0], dy:[0,-5]},  text: {t:cta||brand, style:'brand-serif', anim:'fadeUp', pos:'center', delay:0.4, hold:2.0}, letterbox: 0.12, grade:'cinematic-cold', grain:0.08, darken: 0.55 }
+    ],
+    warm: [
+      { cam: {type:'slowDrift',  from:1.06, to:1.12, dx:[-15,15], dy:[10,-10]}, text: null, letterbox: 0, grade:'warm-golden', grain:0.1, lightLeak: true },
+      { cam: {type:'slowPush',   from:1.1,  to:1.2,  dx:[0,0], dy:[20,-10]}, text: {t:brand, style:'handwrite', anim:'fadeUp', pos:'top-center', delay:0.3, hold:2.0}, letterbox: 0, grade:'warm-golden', grain:0.1 },
+      { cam: {type:'slowPanH',   from:1.12, to:1.12, dx:[-40,40], dy:[0,0]}, text: null, letterbox: 0, grade:'warm-golden', grain:0.1 },
+      { cam: {type:'slowPush',   from:1.08, to:1.15, dx:[0,0], dy:[0,-15]}, text: {t:tagline, style:'display-warm', anim:'wordFade', pos:'center', delay:0.3, hold:1.9}, letterbox: 0, grade:'warm-golden', grain:0.1 },
+      { cam: {type:'slowDrift',  from:1.05, to:1.1, dx:[10,-10], dy:[-10,10]}, text: null, letterbox: 0, grade:'warm-golden', grain:0.1, lightLeak: true },
+      { cam: {type:'slowPush',   from:1.02, to:1.1, dx:[0,0], dy:[0,-5]},  text: {t:cta||brand, style:'brand-warm', anim:'fadeUp', pos:'center', delay:0.4, hold:2.0}, letterbox: 0, grade:'warm-golden', grain:0.12, darken:0.35 }
+    ],
+    dynamic: [
+      { cam: {type:'crashZoom',  from:1.4,  to:1.08, dx:[0,0], dy:[0,0]}, text: {t:brand, style:'kinetic-bold', anim:'slamIn', pos:'center', delay:0.1, hold:1.0}, letterbox: 0, grade:'punchy-high', grain:0.05, flash: true },
+      { cam: {type:'whipPan',    from:1.15, to:1.15, dx:[-80,80], dy:[0,0]}, text: null, letterbox: 0.05, grade:'punchy-high', grain:0.05, flash: true },
+      { cam: {type:'crashZoom',  from:1.05, to:1.25, dx:[0,-20], dy:[0,0]}, text: {t:tagline, style:'kinetic-bold-big', anim:'kineticType', pos:'center', delay:0.0, hold:1.4}, letterbox: 0.05, grade:'punchy-high', grain:0.05 },
+      { cam: {type:'whipPan',    from:1.2, to:1.1, dx:[60,-60], dy:[0,0]}, text: null, letterbox: 0.05, grade:'punchy-high', grain:0.05, flash: true },
+      { cam: {type:'crashZoom',  from:1.3,  to:1.1, dx:[0,0], dy:[10,-10]}, text: {t:tagline.length>6?tagline.slice(0,6):tagline, style:'kinetic-bold', anim:'slamIn', pos:'top-right', delay:0.2, hold:1.6}, letterbox: 0.05, grade:'punchy-high', grain:0.05 },
+      { cam: {type:'slowPush',   from:1.05, to:1.12, dx:[0,0], dy:[0,0]},  text: {t:cta||brand, style:'brand-bold', anim:'slamIn', pos:'center', delay:0.2, hold:2.0}, letterbox: 0.08, grade:'punchy-high', grain:0.08, darken:0.5 }
+    ],
+    modern: [
+      { cam: {type:'slowPush',   from:1.05, to:1.1, dx:[0,0], dy:[0,-10]}, text: {t:brand, style:'geo-sans', anim:'slideLeft', pos:'top-left', delay:0.3, hold:2.0}, letterbox: 0, grade:'clean-neutral', grain:0.03 },
+      { cam: {type:'slowPush',   from:1.08, to:1.15, dx:[0,10], dy:[0,0]}, text: null, letterbox: 0, grade:'clean-neutral', grain:0.03 },
+      { cam: {type:'slowPanH',   from:1.1, to:1.1, dx:[-30,30], dy:[0,0]}, text: {t:tagline, style:'geo-sans-big', anim:'slideLeft', pos:'center-lower', delay:0.2, hold:2.0}, letterbox: 0, grade:'clean-neutral', grain:0.03 },
+      { cam: {type:'slowPush',   from:1.1, to:1.18, dx:[0,0], dy:[10,-5]}, text: null, letterbox: 0, grade:'clean-neutral', grain:0.03 },
+      { cam: {type:'slowDrift',  from:1.05, to:1.1, dx:[-10,10], dy:[0,0]}, text: {t:(tagline.split(/[\s\·]/)[0]||tagline), style:'geo-accent', anim:'slideLeft', pos:'bottom-left', delay:0.3, hold:1.8}, letterbox: 0, grade:'clean-neutral', grain:0.03 },
+      { cam: {type:'slowPush',   from:1.02, to:1.08, dx:[0,0], dy:[0,0]},  text: {t:cta||brand, style:'brand-geo', anim:'slideLeft', pos:'center', delay:0.4, hold:2.0}, letterbox: 0, grade:'clean-neutral', grain:0.05, darken: 0.4 }
+    ]
+  };
+  
+  const tmpl = templates[vibe];
+  const sceneDur = 2.5;
+  const scenes = tmpl.map((s, i) => {
+    // Apply small per-regen variations to camera params
+    const variation = (seed * 1000 + i * 137) % 1; // deterministic per-seed, per-scene
+    const varScale = (variation - 0.5) * 0.04;     // ±0.02 in scale
+    const varDx = (variation - 0.5) * 10;           // ±5px drift
+    
+    return {
+      ...s,
+      photo: rot[i],
+      photoData: photos[rot[i]] || photos[0],
+      start: i * sceneDur,
+      duration: sceneDur,
+      index: i,
+      // Apply small parameter variations
+      cam: {
+        ...s.cam,
+        to: s.cam.to + varScale,
+        dx: [s.cam.dx[0] + varDx, s.cam.dx[1] - varDx]
+      }
+    };
+  });
+  
+  return { scenes, totalDuration: 15, vibe, brand, tagline, cta, seed };
+}
+
+// ================ VIDEO RENDERER ================
+class VideoRenderer {
+  constructor(canvas, timeline) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d');
+    this.ctx.imageSmoothingEnabled = true;
+    this.ctx.imageSmoothingQuality = 'high';
+    this.W = canvas.width;   // 540
+    this.H = canvas.height;  // 960 (we scale up mentally to 1080x1920)
+    this.timeline = timeline;
+    this.playing = false;
+    this.startTime = 0;
+    this.currentTime = 0;
+    this.onTimeUpdate = null;
+    this.onEnd = null;
+    
+    // Grain texture
+    this.grainCanvas = document.createElement('canvas');
+    this.grainCanvas.width = 200; this.grainCanvas.height = 200;
+    this.regenerateGrain();
+  }
+  
+  regenerateGrain() {
+    const gctx = this.grainCanvas.getContext('2d');
+    const id = gctx.createImageData(200, 200);
+    for (let i = 0; i < id.data.length; i += 4) {
+      const v = (Math.random() - 0.5) * 255;
+      id.data[i] = id.data[i+1] = id.data[i+2] = 128 + v * 0.5;
+      id.data[i+3] = 255;
+    }
+    gctx.putImageData(id, 0, 0);
+  }
+  
+  play() {
+    this.playing = true;
+    this.startTime = performance.now() - this.currentTime * 1000;
+    requestAnimationFrame(t => this.loop(t));
+  }
+  
+  pause() { this.playing = false; }
+  
+  seek(t) {
+    this.currentTime = Math.max(0, Math.min(t, this.timeline.totalDuration));
+    this.renderFrame(this.currentTime);
+  }
+  
+  loop(now) {
+    if (!this.playing) return;
+    this.currentTime = (now - this.startTime) / 1000;
+    
+    if (this.currentTime >= this.timeline.totalDuration) {
+      this.currentTime = this.timeline.totalDuration;
+      this.renderFrame(this.currentTime - 0.01);
+      this.playing = false;
+      if (this.onEnd) this.onEnd();
+      return;
+    }
+    
+    this.renderFrame(this.currentTime);
+    if (this.onTimeUpdate) this.onTimeUpdate(this.currentTime);
+    requestAnimationFrame(t => this.loop(t));
+  }
+  
+  renderFrame(t) {
+    const ctx = this.ctx, W = this.W, H = this.H;
+    // Regen grain every 3 frames for animation
+    if (Math.floor(t*10) % 3 === 0) this.regenerateGrain();
+    
+    // Clear
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, W, H);
+    
+    // Find active scenes (may overlap for crossfade)
+    const scenes = this.timeline.scenes;
+    const fadeTime = 0.25;
+    
+    for (let i = 0; i < scenes.length; i++) {
+      const s = scenes[i];
+      const sEnd = s.start + s.duration;
+      // Extend range slightly for crossfade
+      if (t >= s.start - fadeTime && t < sEnd + fadeTime) {
+        let alpha = 1;
+        // Fade in (if not first scene)
+        if (i > 0 && t < s.start + fadeTime) {
+          alpha = (t - (s.start - fadeTime)) / (fadeTime * 2);
+          alpha = Math.max(0, Math.min(1, alpha));
+        }
+        // Fade out (if not last scene)
+        if (i < scenes.length - 1 && t > sEnd - fadeTime) {
+          alpha = Math.min(alpha, ((sEnd + fadeTime) - t) / (fadeTime * 2));
+          alpha = Math.max(0, Math.min(1, alpha));
+        }
+        // First scene fade from black
+        if (i === 0 && t < fadeTime) {
+          alpha = t / fadeTime;
+        }
+        // Last scene fade to black
+        if (i === scenes.length - 1 && t > sEnd - fadeTime) {
+          alpha = (sEnd - t) / fadeTime;
+          alpha = Math.max(0, alpha);
+        }
+        
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        this.renderScene(s, t);
+        ctx.restore();
+      }
+    }
+    
+    // Global overlays (film grain, letterbox bars - rendered per scene)
+  }
+  
+  renderScene(s, t) {
+    const ctx = this.ctx, W = this.W, H = this.H;
+    const sceneT = Math.max(0, Math.min(1, (t - s.start) / s.duration));
+    const vibe = this.timeline.vibe;
+    
+    const cam = s.cam;
+    const ease = cam.type === 'crashZoom' ? Ease.easeOutExpo : 
+                 cam.type === 'whipPan' ? Ease.easeInOutQuart :
+                 cam.type === 'slowDrift' ? Ease.easeInOutCubic :
+                 Ease.easeInOutCubic;
+    const p = ease(sceneT);
+    
+    const scale = cam.from + (cam.to - cam.from) * p;
+    let dx = cam.dx[0] + (cam.dx[1] - cam.dx[0]) * p;
+    let dy = cam.dy[0] + (cam.dy[1] - cam.dy[0]) * p;
+    
+    // ===== CAMERA SHAKE (crash zoom impact) =====
+    if (cam.type === 'crashZoom' && sceneT < 0.25) {
+      const shakeAmt = (0.25 - sceneT) / 0.25;
+      const intensity = vibe === 'dynamic' ? 10 : 4;
+      dx += (Math.random() - 0.5) * shakeAmt * intensity;
+      dy += (Math.random() - 0.5) * shakeAmt * intensity;
+    }
+    // Subtle breathing shake throughout for handheld feel in warm vibe
+    if (vibe === 'warm') {
+      dx += Math.sin(t * 3) * 1.5;
+      dy += Math.cos(t * 2.3) * 1;
+    }
+    
+    // ===== PARALLAX DEPTH LAYER (blurred darker background) =====
+    // This is what makes static photos feel like cinematic footage — the focal plane illusion
+    const img = s.photoData.img;
+    const useParallax = cam.type === 'slowPush' || cam.type === 'slowDrift' || 
+                        cam.type === 'slowPan' || cam.type === 'slowPanH' || 
+                        cam.type === 'tightZoom';
+    if (useParallax) {
+      ctx.save();
+      // Blurred, desaturated, darker bg layer with inverse camera motion (parallax)
+      ctx.filter = 'blur(10px) brightness(0.55) saturate(0.7)';
+      this.drawPhotoCover(img, scale * 1.12, -dx * 0.6, -dy * 0.6);
+      ctx.restore();
+    }
+    
+    // ===== MOTION BLUR for whip pan (multiple time-offset copies) =====
+    if (cam.type === 'whipPan') {
+      // Peak blur at mid-transition (sceneT ~0.5)
+      const blurPeak = 1 - Math.abs(sceneT - 0.5) * 2;
+      if (blurPeak > 0.2) {
+        const samples = 5;
+        for (let i = 0; i < samples; i++) {
+          const offsetT = (i / (samples-1) - 0.5) * 0.12;
+          const offsetP = ease(Math.max(0, Math.min(1, sceneT + offsetT)));
+          const sDx = cam.dx[0] + (cam.dx[1] - cam.dx[0]) * offsetP;
+          const sDy = cam.dy[0] + (cam.dy[1] - cam.dy[0]) * offsetP;
+          const sScale = cam.from + (cam.to - cam.from) * offsetP;
+          ctx.save();
+          ctx.globalAlpha = (blurPeak * 0.35) / samples * (1 - Math.abs(i - (samples-1)/2) / samples);
+          this.drawPhotoCover(img, sScale, sDx, sDy);
+          ctx.restore();
+        }
+      }
+    }
+    
+    // ===== MAIN PHOTO (sharp foreground) =====
+    this.drawPhotoCover(img, scale, dx, dy);
+    
+    // ===== COLOR GRADE =====
+    this.applyGrade(s.grade, sceneT);
+    
+    // ===== VIGNETTE =====
+    this.drawVignette(s.darken || 0.18);
+    
+    // ===== LENS FLARE (warm vibe and scene-start moments) =====
+    if (s.lightLeak && sceneT < 0.5) {
+      this.drawLensFlare(sceneT, 0.5);
+    }
+    if (vibe === 'elegant' && s.index === 2 && sceneT > 0.3 && sceneT < 0.7) {
+      // Premium accent flare mid-scene on hero shot
+      this.drawSubtleFlare((sceneT - 0.3) / 0.4);
+    }
+    
+    // ===== FILM GRAIN =====
+    if (s.grain > 0) this.drawGrain(s.grain);
+    
+    // ===== LIGHT LEAK SWEEP (scene-entry) =====
+    if (s.lightLeak && sceneT < 0.3) {
+      ctx.save();
+      ctx.globalAlpha = (0.3 - sceneT) / 0.3 * 0.45;
+      const sweepX = (sceneT / 0.3) * W * 2 - W * 0.5;
+      const lg = ctx.createLinearGradient(sweepX - 80, 0, sweepX + 80, H);
+      lg.addColorStop(0, 'rgba(255, 200, 120, 0)');
+      lg.addColorStop(0.5, 'rgba(255, 220, 150, 0.6)');
+      lg.addColorStop(1, 'rgba(255, 180, 100, 0)');
+      ctx.fillStyle = lg;
+      ctx.fillRect(0, 0, W, H);
+      ctx.restore();
+    }
+    
+    // ===== FLASH FRAME (hard cuts in dynamic) =====
+    if (s.flash && sceneT < 0.14) {
+      ctx.save();
+      ctx.globalAlpha = (0.14 - sceneT) / 0.14 * 0.85;
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0, 0, W, H);
+      ctx.restore();
+    }
+    
+    // ===== LETTERBOX BARS =====
+    if (s.letterbox > 0) {
+      const barH = H * s.letterbox;
+      let barOffset = 0;
+      if (sceneT < 0.2 && s.index === 0) {
+        barOffset = barH * (1 - Ease.easeOutQuart(sceneT / 0.2));
+      }
+      ctx.save();
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, -barOffset, W, barH);
+      ctx.fillRect(0, H - barH + barOffset, W, barH);
+      
+      // Subtle bar highlight edge (cinema projection feel)
+      ctx.fillStyle = 'rgba(255,255,255,0.06)';
+      ctx.fillRect(0, barH - barOffset, W, 1);
+      ctx.fillRect(0, H - barH + barOffset - 1, W, 1);
+      ctx.restore();
+    }
+    
+    // ===== CORNER GRAPHICS (vibe-dependent) =====
+    this.drawCornerMark(s, sceneT, t);
+    
+    // ===== TEXT OVERLAY =====
+    if (s.text) {
+      this.drawText(s.text, sceneT, s.duration, s.letterbox);
+    }
+    
+    // ===== TIMECODE (elegant vibe only, bottom-left) =====
+    if (vibe === 'elegant' && s.letterbox > 0) {
+      ctx.save();
+      ctx.globalAlpha = 0.55;
+      ctx.fillStyle = '#fff';
+      ctx.font = `500 11px "JetBrains Mono", monospace`;
+      ctx.textAlign = 'left';
+      const tc = `00:${String(Math.floor(t)).padStart(2,'0')}:${String(Math.floor((t%1)*100)).padStart(2,'0')}`;
+      ctx.fillText(tc, 24, H - H*s.letterbox - 16);
+      ctx.fillText(`● REC`, W - 80, H - H*s.letterbox - 16);
+      ctx.restore();
+    }
+    
+    // ===== FINAL BRAND MARK (last scene only) =====
+    if (s.index === this.timeline.scenes.length - 1 && sceneT > 0.55) {
+      ctx.save();
+      const markAlpha = Math.min(1, (sceneT - 0.55) / 0.25);
+      ctx.globalAlpha = markAlpha * 0.9;
+      ctx.fillStyle = '#fff';
+      ctx.font = `400 13px "JetBrains Mono", monospace`;
+      ctx.textAlign = 'center';
+      ctx.fillText('— 日产广告 · DAILY ADS —', W/2, H - 44);
+      
+      // Accent dot
+      ctx.fillStyle = '#C73E2E';
+      ctx.beginPath();
+      ctx.arc(W/2 - 118, H - 48, 3, 0, Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+  
+  // ===== Vibe-dependent corner graphics =====
+  drawCornerMark(s, sceneT, t) {
+    const ctx = this.ctx, W = this.W, H = this.H;
+    const vibe = this.timeline.vibe;
+    const topPad = H * s.letterbox + 24;
+    
+    if (vibe === 'dynamic') {
+      // Pulsing "HOT" corner badge on scenes 0, 2, 4
+      if ([0, 2, 4].includes(s.index) && sceneT > 0.1) {
+        const pulse = 1 + Math.sin(t * 8) * 0.06;
+        ctx.save();
+        ctx.globalAlpha = Math.min(1, (sceneT - 0.1) / 0.2) * 0.95;
+        ctx.translate(W - 70, topPad + 30);
+        ctx.rotate(0.15);
+        ctx.scale(pulse, pulse);
+        ctx.fillStyle = '#C73E2E';
+        ctx.fillRect(-38, -20, 76, 40);
+        ctx.fillStyle = '#fff';
+        ctx.font = '900 22px "Noto Sans SC", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('HOT', 0, 1);
+        ctx.restore();
+      }
+    } else if (vibe === 'elegant' && s.index === 0 && sceneT > 0.3) {
+      // Top-right issue number
+      ctx.save();
+      ctx.globalAlpha = Math.min(1, (sceneT - 0.3) / 0.3) * 0.85;
+      ctx.fillStyle = '#fff';
+      ctx.font = `italic 400 18px "Instrument Serif", serif`;
+      ctx.textAlign = 'right';
+      ctx.fillText(`N° ${String(Math.floor(Math.random() * 900) + 100).padStart(3,'0')}`, W - 24, topPad + 18);
+      ctx.font = `500 9px "JetBrains Mono", monospace`;
+      ctx.globalAlpha = 0.55;
+      ctx.fillText('2026 · VOL.04', W - 24, topPad + 36);
+      ctx.restore();
+    } else if (vibe === 'modern' && s.index < 2 && sceneT > 0.2) {
+      // Minimal corner indicator
+      ctx.save();
+      ctx.globalAlpha = 0.75;
+      ctx.fillStyle = '#fff';
+      ctx.font = `500 10px "JetBrains Mono", monospace`;
+      ctx.textAlign = 'left';
+      ctx.fillText(`— ${String(s.index+1).padStart(2,'0')} / ${String(this.timeline.scenes.length).padStart(2,'0')}`, 24, H - 36);
+      ctx.restore();
+    }
+  }
+  
+  drawLensFlare(sceneT, window) {
+    const ctx = this.ctx, W = this.W, H = this.H;
+    const fade = Math.max(0, 1 - sceneT / window);
+    ctx.save();
+    ctx.globalAlpha = fade * 0.6;
+    ctx.globalCompositeOperation = 'screen';
+    
+    // Main flare circle (upper-right corner)
+    const cx = W * 0.82, cy = H * 0.22;
+    const g1 = ctx.createRadialGradient(cx, cy, 0, cx, cy, 160);
+    g1.addColorStop(0, 'rgba(255, 240, 200, 0.8)');
+    g1.addColorStop(0.4, 'rgba(255, 200, 130, 0.3)');
+    g1.addColorStop(1, 'rgba(255, 180, 100, 0)');
+    ctx.fillStyle = g1;
+    ctx.fillRect(0, 0, W, H);
+    
+    // Ghost hexagonal flare chain
+    const ghosts = [
+      { x: cx, y: cy, r: 80, a: 0.7 },
+      { x: cx - (W/2 - cx)*0.6, y: cy + (H/2 - cy)*0.6, r: 30, a: 0.5 },
+      { x: cx - (W/2 - cx)*1.2, y: cy + (H/2 - cy)*1.2, r: 50, a: 0.4 },
+      { x: cx - (W/2 - cx)*1.8, y: cy + (H/2 - cy)*1.8, r: 20, a: 0.3 }
+    ];
+    ghosts.forEach(gh => {
+      const gg = ctx.createRadialGradient(gh.x, gh.y, 0, gh.x, gh.y, gh.r);
+      gg.addColorStop(0, `rgba(255, 220, 180, ${gh.a})`);
+      gg.addColorStop(1, 'rgba(255, 220, 180, 0)');
+      ctx.fillStyle = gg;
+      ctx.fillRect(0, 0, W, H);
+    });
+    ctx.restore();
+  }
+  
+  drawSubtleFlare(t) {
+    const ctx = this.ctx, W = this.W, H = this.H;
+    ctx.save();
+    ctx.globalAlpha = Math.sin(t * Math.PI) * 0.3;
+    ctx.globalCompositeOperation = 'screen';
+    const cx = W * 0.3, cy = H * 0.3;
+    const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, 200);
+    g.addColorStop(0, 'rgba(255, 250, 230, 0.7)');
+    g.addColorStop(1, 'rgba(255, 250, 230, 0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, W, H);
+    ctx.restore();
+  }
+  
+  drawPhotoCover(img, scale, dx, dy) {
+    const W = this.W, H = this.H;
+    // Cover fit: scale img to cover entire canvas, centered
+    const imgAR = img.width / img.height;
+    const canvasAR = W / H;
+    let baseW, baseH;
+    if (imgAR > canvasAR) {
+      // img wider: fit by height
+      baseH = H; baseW = H * imgAR;
+    } else {
+      baseW = W; baseH = W / imgAR;
+    }
+    // Apply camera scale
+    const finalW = baseW * scale;
+    const finalH = baseH * scale;
+    // Position centered + offset
+    const x = (W - finalW) / 2 + dx * (scale * 0.5);
+    const y = (H - finalH) / 2 + dy * (scale * 0.5);
+    this.ctx.drawImage(img, x, y, finalW, finalH);
+  }
+  
+  applyGrade(grade, sceneT) {
+    const ctx = this.ctx, W = this.W, H = this.H;
+    ctx.save();
+    
+    if (grade === 'cinematic-cold') {
+      // Classic teal-orange: shadows cold, highlights warm
+      // Step 1: overall cool multiply
+      ctx.globalCompositeOperation = 'multiply';
+      const shadowGrad = ctx.createLinearGradient(0, 0, 0, H);
+      shadowGrad.addColorStop(0, 'rgba(210, 220, 235, 1)');   // upper: cool highlight
+      shadowGrad.addColorStop(1, 'rgba(165, 190, 215, 1)');   // lower: cooler shadow
+      ctx.fillStyle = shadowGrad;
+      ctx.fillRect(0, 0, W, H);
+      
+      // Step 2: warm tint on highlights via soft-light
+      ctx.globalCompositeOperation = 'soft-light';
+      const hiGrad = ctx.createRadialGradient(W*0.5, H*0.35, 0, W*0.5, H*0.35, Math.max(W,H)*0.6);
+      hiGrad.addColorStop(0, 'rgba(255, 200, 140, 0.45)');
+      hiGrad.addColorStop(1, 'rgba(80, 120, 160, 0.25)');
+      ctx.fillStyle = hiGrad;
+      ctx.fillRect(0, 0, W, H);
+      
+      // Step 3: slight desaturation via color-burn gray
+      ctx.globalCompositeOperation = 'color';
+      ctx.fillStyle = 'rgba(180, 190, 200, 0.15)';
+      ctx.fillRect(0, 0, W, H);
+      
+    } else if (grade === 'warm-golden') {
+      // Golden hour: warm everywhere, slight magenta in shadows
+      ctx.globalCompositeOperation = 'multiply';
+      const g = ctx.createLinearGradient(0, 0, 0, H);
+      g.addColorStop(0, 'rgba(255, 225, 175, 1)');
+      g.addColorStop(0.6, 'rgba(255, 210, 160, 1)');
+      g.addColorStop(1, 'rgba(220, 165, 130, 1)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+      
+      ctx.globalCompositeOperation = 'soft-light';
+      ctx.fillStyle = 'rgba(255, 170, 90, 0.4)';
+      ctx.fillRect(0, 0, W, H);
+      
+      // Magenta tint in lower shadows
+      ctx.globalCompositeOperation = 'overlay';
+      const sh = ctx.createLinearGradient(0, H*0.6, 0, H);
+      sh.addColorStop(0, 'rgba(180, 100, 140, 0)');
+      sh.addColorStop(1, 'rgba(180, 100, 140, 0.2)');
+      ctx.fillStyle = sh;
+      ctx.fillRect(0, 0, W, H);
+      
+    } else if (grade === 'punchy-high') {
+      // Saturated, high contrast, poster-like
+      ctx.globalCompositeOperation = 'overlay';
+      ctx.fillStyle = 'rgba(40, 40, 45, 0.25)';
+      ctx.fillRect(0, 0, W, H);
+      
+      ctx.globalCompositeOperation = 'soft-light';
+      const g = ctx.createRadialGradient(W*0.5, H*0.5, 0, W*0.5, H*0.5, W*0.8);
+      g.addColorStop(0, 'rgba(255, 140, 80, 0.35)');
+      g.addColorStop(0.5, 'rgba(100, 80, 150, 0.2)');
+      g.addColorStop(1, 'rgba(30, 50, 100, 0.3)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+      
+      // Saturation boost via color overlay
+      ctx.globalCompositeOperation = 'saturation';
+      ctx.fillStyle = 'rgba(200, 50, 50, 0.5)';
+      ctx.fillRect(0, 0, W, H);
+      
+    } else if (grade === 'clean-neutral') {
+      // Minimal, slight brightness lift, subtle cool
+      ctx.globalCompositeOperation = 'soft-light';
+      const g = ctx.createLinearGradient(0, 0, 0, H);
+      g.addColorStop(0, 'rgba(255, 255, 255, 0.25)');
+      g.addColorStop(1, 'rgba(220, 225, 235, 0.15)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+      
+      // Slight desaturation
+      ctx.globalCompositeOperation = 'color';
+      ctx.fillStyle = 'rgba(200, 205, 210, 0.25)';
+      ctx.fillRect(0, 0, W, H);
+      
+      // Subtle cool tint
+      ctx.globalCompositeOperation = 'multiply';
+      ctx.fillStyle = 'rgba(240, 243, 248, 1)';
+      ctx.fillRect(0, 0, W, H);
+    }
+    
+    ctx.restore();
+  }
+  
+  drawVignette(intensity) {
+    const ctx = this.ctx, W = this.W, H = this.H;
+    ctx.save();
+    const g = ctx.createRadialGradient(W/2, H/2, Math.min(W,H)*0.3, W/2, H/2, Math.max(W,H)*0.75);
+    g.addColorStop(0, 'rgba(0,0,0,0)');
+    g.addColorStop(1, `rgba(0,0,0,${intensity})`);
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, W, H);
+    ctx.restore();
+  }
+  
+  drawGrain(intensity) {
+    const ctx = this.ctx, W = this.W, H = this.H;
+    ctx.save();
+    ctx.globalAlpha = intensity;
+    ctx.globalCompositeOperation = 'overlay';
+    // Tile grain
+    const pattern = ctx.createPattern(this.grainCanvas, 'repeat');
+    ctx.fillStyle = pattern;
+    ctx.fillRect(0, 0, W, H);
+    ctx.restore();
+  }
+  
+  drawText(text, sceneT, sceneDur, letterbox) {
+    if (!text.t) return;
+    const ctx = this.ctx, W = this.W, H = this.H;
+    const delay = text.delay / sceneDur;
+    const hold = text.hold / sceneDur;
+    const fadeTime = 0.15;
+    
+    // Text visibility window
+    let textAlpha = 0, animT = 0;
+    if (sceneT < delay) return;
+    if (sceneT < delay + fadeTime) {
+      animT = (sceneT - delay) / fadeTime;
+      textAlpha = animT;
+    } else if (sceneT < delay + hold - fadeTime) {
+      animT = 1;
+      textAlpha = 1;
+    } else if (sceneT < delay + hold) {
+      animT = 1;
+      textAlpha = 1 - (sceneT - (delay + hold - fadeTime)) / fadeTime;
+    } else {
+      return;
+    }
+    
+    ctx.save();
+    ctx.globalAlpha = Math.max(0, Math.min(1, textAlpha));
+    
+    // Style configurations
+    const styles = {
+      'display-serif':      { font:'900 48px "Noto Serif SC", serif',  color:'#fff', shadow:true, letterSpacing: 2 },
+      'display-serif-big':  { font:'900 88px "Noto Serif SC", serif',  color:'#fff', shadow:true, letterSpacing: 0 },
+      'sub-serif':          { font:'500 34px "Noto Serif SC", serif',  color:'#fff', shadow:true, letterSpacing: 6 },
+      'brand-serif':        { font:'900 72px "Noto Serif SC", serif',  color:'#fff', shadow:false, letterSpacing: 4 },
+      'handwrite':          { font:'italic 44px "Instrument Serif", serif', color:'#fff', shadow:true, letterSpacing: 1 },
+      'display-warm':       { font:'700 70px "Noto Serif SC", serif',  color:'#fff5e0', shadow:true, letterSpacing: 2 },
+      'brand-warm':         { font:'900 64px "Noto Serif SC", serif',  color:'#fff', shadow:false, letterSpacing: 3 },
+      'kinetic-bold':       { font:'900 56px "Noto Sans SC", sans-serif', color:'#fff', shadow:true, letterSpacing: -2, stroke:'#000' },
+      'kinetic-bold-big':   { font:'900 112px "Noto Sans SC", sans-serif', color:'#fff', shadow:true, letterSpacing: -3, stroke:'#000' },
+      'brand-bold':         { font:'900 68px "Noto Sans SC", sans-serif', color:'#fff', shadow:false, letterSpacing: 2 },
+      'geo-sans':           { font:'500 32px "Noto Sans SC", sans-serif', color:'#fff', shadow:true, letterSpacing: 6 },
+      'geo-sans-big':       { font:'700 64px "Noto Sans SC", sans-serif', color:'#fff', shadow:true, letterSpacing: 2 },
+      'geo-accent':         { font:'500 40px "Noto Sans SC", sans-serif', color:'#fff', shadow:true, letterSpacing: 4 },
+      'brand-geo':          { font:'700 56px "Noto Sans SC", sans-serif', color:'#fff', shadow:false, letterSpacing: 3 },
+    };
+    const s = styles[text.style] || styles['display-serif'];
+    
+    ctx.font = s.font;
+    ctx.fillStyle = s.color;
+    ctx.textBaseline = 'middle';
+    ctx.textAlign = 'center';
+    
+    // Position
+    let x = W/2, y = H/2;
+    switch (text.pos) {
+      case 'bottom-center': y = H - H*letterbox - 80; break;
+      case 'center-lower':  y = H * 0.62; break;
+      case 'center':        y = H * 0.52; break;
+      case 'top-center':    y = H*letterbox + 100; break;
+      case 'top-right':     y = H*letterbox + 100; x = W - 60; ctx.textAlign='right'; break;
+      case 'top-left':      y = H*letterbox + 80; x = 60; ctx.textAlign='left'; break;
+      case 'bottom-left':   y = H - H*letterbox - 80; x = 60; ctx.textAlign='left'; break;
+    }
+    
+    // Apply animation
+    let renderText = text.t;
+    let offsetX = 0, offsetY = 0, renderScale = 1;
+    
+    if (text.anim === 'fadeUp') {
+      offsetY = (1 - Math.min(1, animT*2)) * 30;
+      renderScale = 0.92 + Math.min(1, animT*2) * 0.08;
+    } else if (text.anim === 'slideLeft') {
+      offsetX = (1 - Math.min(1, animT)) * 60;
+    } else if (text.anim === 'slamIn') {
+      // Scale from big to normal + shake briefly
+      renderScale = 1.3 - Math.min(1, animT*3) * 0.3;
+      if (animT < 0.3) {
+        const shake = (0.3 - animT) * 10;
+        offsetX = (Math.random() - 0.5) * shake;
+        offsetY = (Math.random() - 0.5) * shake;
+      }
+    } else if (text.anim === 'kineticType') {
+      // Character-by-character reveal
+      const totalChars = [...text.t].length;
+      const showCount = Math.ceil(animT * totalChars);
+      renderText = [...text.t].slice(0, showCount).join('');
+    } else if (text.anim === 'revealChars') {
+      // Reveal chars with slight stagger upward float
+      this.drawCharsReveal(text.t, x, y, s, animT);
+      ctx.restore();
+      return;
+    } else if (text.anim === 'wordFade') {
+      // Fade word by word if multi-word, else char
+      const parts = text.t.includes(' ') ? text.t.split(' ') : [...text.t];
+      this.drawPartsFade(parts, text.t.includes(' ') ? ' ' : '', x, y, s, animT);
+      ctx.restore();
+      return;
+    }
+    
+    // Shadow
+    if (s.shadow) {
+      ctx.shadowColor = 'rgba(0,0,0,0.6)';
+      ctx.shadowBlur = 20;
+      ctx.shadowOffsetY = 3;
+    }
+    
+    // Letter spacing emulation: draw chars one by one
+    const finalX = x + offsetX, finalY = y + offsetY;
+    ctx.save();
+    ctx.translate(finalX, finalY);
+    ctx.scale(renderScale, renderScale);
+    
+    if (s.letterSpacing && s.letterSpacing !== 0) {
+      const chars = [...renderText];
+      const m = chars.map(ch => ctx.measureText(ch).width);
+      const totalW = m.reduce((a,b)=>a+b,0) + s.letterSpacing * (chars.length - 1);
+      let cx = ctx.textAlign === 'right' ? 0 : (ctx.textAlign === 'left' ? 0 : -totalW/2);
+      ctx.textAlign = 'left';
+      for (let i = 0; i < chars.length; i++) {
+        if (s.stroke) {
+          ctx.lineWidth = 4; ctx.strokeStyle = s.stroke;
+          ctx.strokeText(chars[i], cx, 0);
+        }
+        ctx.fillText(chars[i], cx, 0);
+        cx += m[i] + s.letterSpacing;
+      }
+    } else {
+      if (s.stroke) {
+        ctx.lineWidth = 4; ctx.strokeStyle = s.stroke;
+        ctx.strokeText(renderText, 0, 0);
+      }
+      ctx.fillText(renderText, 0, 0);
+    }
+    
+    ctx.restore();
+    ctx.restore();
+  }
+  
+  drawCharsReveal(text, x, y, style, animT) {
+    const ctx = this.ctx;
+    const chars = [...text];
+    ctx.font = style.font;
+    ctx.fillStyle = style.color;
+    ctx.textBaseline = 'middle';
+    
+    // Measure total width for centering
+    const widths = chars.map(c => ctx.measureText(c).width);
+    const ls = style.letterSpacing || 0;
+    const totalW = widths.reduce((a,b)=>a+b,0) + ls * (chars.length-1);
+    let cx = x - totalW/2;
+    
+    ctx.shadowColor = 'rgba(0,0,0,0.6)';
+    ctx.shadowBlur = 20;
+    ctx.shadowOffsetY = 3;
+    
+    for (let i = 0; i < chars.length; i++) {
+      const charDelay = i * 0.06;
+      const charT = Math.max(0, Math.min(1, (animT - charDelay) / 0.4));
+      if (charT <= 0) { cx += widths[i] + ls; continue; }
+      const charAlpha = charT;
+      const charOffsetY = (1 - Ease.easeOutCubic(charT)) * 30;
+      ctx.save();
+      ctx.globalAlpha = charAlpha;
+      ctx.fillText(chars[i], cx + widths[i]/2 - widths[i]/2, y + charOffsetY);
+      ctx.restore();
+      cx += widths[i] + ls;
+    }
+  }
+  
+  drawPartsFade(parts, sep, x, y, style, animT) {
+    const ctx = this.ctx;
+    ctx.font = style.font;
+    ctx.fillStyle = style.color;
+    ctx.textBaseline = 'middle';
+    
+    const joined = parts.join(sep);
+    const totalW = ctx.measureText(joined).width;
+    let cx = x - totalW/2;
+    
+    ctx.shadowColor = 'rgba(0,0,0,0.6)';
+    ctx.shadowBlur = 20;
+    ctx.shadowOffsetY = 3;
+    
+    for (let i = 0; i < parts.length; i++) {
+      const partDelay = i * 0.18;
+      const partT = Math.max(0, Math.min(1, (animT - partDelay) / 0.3));
+      const pw = ctx.measureText(parts[i]).width;
+      if (partT > 0) {
+        ctx.save();
+        ctx.globalAlpha = partT;
+        const offsetY = (1 - Ease.easeOutCubic(partT)) * 20;
+        ctx.fillText(parts[i], cx + pw/2, y + offsetY);
+        ctx.restore();
+      }
+      cx += pw + ctx.measureText(sep).width;
+    }
+  }
+}
+
+// ================ MUSIC ENGINE ================
+class MusicEngine {
+  constructor(vibe) {
+    this.vibe = vibe;
+    this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+    this.dest = this.ctx.createMediaStreamDestination();
+    this.master = this.ctx.createGain();
+    this.master.gain.value = 0.35;
+    this.master.connect(this.dest);
+    this.master.connect(this.ctx.destination);
+    this.playing = false;
+    this.nodes = [];
+    this.timers = [];
+  }
+  
+  async start() {
+    if (this.ctx.state === 'suspended') await this.ctx.resume();
+    this.playing = true;
+    const patterns = {
+      elegant: () => this.playElegant(),
+      warm:    () => this.playWarm(),
+      dynamic: () => this.playDynamic(),
+      modern:  () => this.playModern(),
+    };
+    patterns[this.vibe]();
+  }
+  
+  stop() {
+    this.playing = false;
+    this.nodes.forEach(n => { try { n.stop(); } catch(e){} try{n.disconnect();}catch(e){} });
+    this.timers.forEach(t => clearTimeout(t));
+    this.nodes = []; this.timers = [];
+    try { this.ctx.close(); } catch(e){}
+  }
+  
+  // Create a tone with envelope
+  tone(freq, type, start, dur, peakGain, releaseTime) {
+    const o = this.ctx.createOscillator();
+    const g = this.ctx.createGain();
+    o.type = type; o.frequency.value = freq;
+    o.connect(g); g.connect(this.master);
+    const t0 = this.ctx.currentTime + start;
+    g.gain.setValueAtTime(0, t0);
+    g.gain.linearRampToValueAtTime(peakGain, t0 + 0.02);
+    g.gain.setValueAtTime(peakGain, t0 + Math.max(0.02, dur - releaseTime));
+    g.gain.linearRampToValueAtTime(0, t0 + dur);
+    o.start(t0); o.stop(t0 + dur + 0.05);
+    this.nodes.push(o, g);
+    return { o, g };
+  }
+  
+  // Noise burst (hi-hat / clap)
+  noise(start, dur, filterFreq, peakGain) {
+    const bufferSize = this.ctx.sampleRate * dur;
+    const buf = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+    const data = buf.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) data[i] = (Math.random()-0.5)*2;
+    const src = this.ctx.createBufferSource();
+    src.buffer = buf;
+    const filter = this.ctx.createBiquadFilter();
+    filter.type = 'highpass'; filter.frequency.value = filterFreq;
+    const g = this.ctx.createGain();
+    src.connect(filter); filter.connect(g); g.connect(this.master);
+    const t0 = this.ctx.currentTime + start;
+    g.gain.setValueAtTime(peakGain, t0);
+    g.gain.exponentialRampToValueAtTime(0.001, t0 + dur);
+    src.start(t0);
+    this.nodes.push(src, filter, g);
+  }
+  
+  // Kick drum synthesis
+  kick(start, peakGain) {
+    const o = this.ctx.createOscillator();
+    const g = this.ctx.createGain();
+    o.frequency.value = 150;
+    o.connect(g); g.connect(this.master);
+    const t0 = this.ctx.currentTime + start;
+    o.frequency.exponentialRampToValueAtTime(40, t0 + 0.15);
+    g.gain.setValueAtTime(peakGain, t0);
+    g.gain.exponentialRampToValueAtTime(0.001, t0 + 0.2);
+    o.start(t0); o.stop(t0 + 0.21);
+    this.nodes.push(o, g);
+  }
+  
+  playElegant() {
+    // Slow evolving pad + occasional bass drone
+    const notes = [110, 146.83, 164.81, 110, 146.83, 110]; // A2, D3, E3, A2, D3, A2
+    const scheduleBar = (barIdx) => {
+      const start = barIdx * 2.5;
+      const freq = notes[barIdx % notes.length];
+      // Pad (sine + triangle)
+      this.tone(freq, 'sine',     start, 2.5, 0.15, 0.8);
+      this.tone(freq*2, 'sine',   start, 2.5, 0.08, 1.0);
+      this.tone(freq*3, 'triangle', start + 0.5, 1.5, 0.04, 0.8);
+      // Subtle kick every 2 bars
+      if (barIdx % 2 === 0) this.kick(start, 0.3);
+    };
+    for (let i = 0; i < 6; i++) scheduleBar(i);
+  }
+  
+  playWarm() {
+    // Warm arpeggios + pad, major key
+    const chord = [261.63, 329.63, 392, 523.25]; // C major
+    const bassNotes = [130.81, 130.81, 146.83, 130.81, 164.81, 130.81];
+    for (let bar = 0; bar < 6; bar++) {
+      const start = bar * 2.5;
+      // Bass drone
+      this.tone(bassNotes[bar], 'sine', start, 2.5, 0.12, 0.5);
+      this.tone(bassNotes[bar]*2, 'triangle', start, 2.5, 0.06, 0.8);
+      // Arpeggio (4 notes per bar)
+      for (let n = 0; n < 4; n++) {
+        const nf = chord[(bar + n) % chord.length];
+        this.tone(nf, 'triangle', start + n * 0.625, 0.4, 0.1, 0.3);
+        this.tone(nf * 2, 'sine',  start + n * 0.625, 0.4, 0.05, 0.3);
+      }
+    }
+  }
+  
+  playDynamic() {
+    // 4-on-the-floor kick + offbeat hat + bassline
+    const bpm = 110; const beatT = 60/bpm; // seconds per beat
+    const total = 15;
+    const bassNotes = [65.41, 65.41, 82.41, 73.42]; // C2 C2 E2 D2
+    for (let beat = 0; beat * beatT < total; beat++) {
+      const t = beat * beatT;
+      // Kick every beat
+      this.kick(t, 0.6);
+      // Hi-hat on offbeats
+      this.noise(t + beatT/2, 0.05, 6000, 0.15);
+      // Bassline: note per 2 beats
+      if (beat % 2 === 0) {
+        const n = bassNotes[Math.floor(beat/2) % bassNotes.length];
+        this.tone(n, 'sawtooth', t, beatT*2 - 0.05, 0.15, 0.4);
+      }
+    }
+    // Open hat at phrase end
+    for (let phrase = 0; phrase < 3; phrase++) {
+      this.noise(phrase * 5 + 4.5, 0.3, 5000, 0.2);
+    }
+  }
+  
+  playModern() {
+    // Sparse kick pulse + sub drone
+    for (let bar = 0; bar < 6; bar++) {
+      const start = bar * 2.5;
+      this.kick(start, 0.4);
+      if (bar % 2 === 0) this.kick(start + 1.25, 0.25);
+      this.noise(start + 0.625, 0.05, 8000, 0.1);
+      this.noise(start + 1.875, 0.05, 8000, 0.1);
+      // Sub drone
+      this.tone(82.41, 'sine', start, 2.5, 0.18, 0.8);
+      this.tone(164.81, 'triangle', start, 2.5, 0.05, 1.0);
+    }
+  }
+}
+
+// ================ STEP 3: GENERATION SIMULATION + RENDER ================
+async function startGeneration() {
+  const logLines = document.querySelectorAll('#renderLog .log-line');
+  logLines.forEach(l => l.classList.remove('done','active'));
+  logLines.forEach(l => l.classList.add('pending'));
+  
+  const previewCanvas = document.getElementById('previewCanvas');
+  const pctEl = document.getElementById('progPct');
+  const fillEl = document.getElementById('progFill');
+  const statusEl = document.getElementById('progStatus');
+  const overlay = document.getElementById('renderOverlay');
+  const stage = document.getElementById('renderStage');
+  stage.classList.remove('ready');
+  overlay.style.display = 'flex';
+  
+  const steps = [
+    { label:'分析照片构图 · 提取主色', duration: 1400 },
+    { label:'规划六分镜 · 匹配节奏曲线', duration: 1200 },
+    { label:'电影级调色 · 生成 LUT', duration: 1300 },
+    { label:'字幕动效 · 字符级关键帧', duration: 1200 },
+    { label:'合成背景音乐 · 律动匹配', duration: 1100 },
+    { label:'预览就绪', duration: 400 },
+  ];
+  
+  const total = steps.reduce((a,s)=>a+s.duration,0);
+  let elapsed = 0;
+  
+  for (let i = 0; i < steps.length; i++) {
+    const ll = logLines[i];
+    ll.classList.remove('pending');
+    ll.classList.add('active');
+    statusEl.textContent = steps[i].label + ' …';
+    
+    const stepDur = steps[i].duration;
+    const stepStart = elapsed;
+    await new Promise(resolve => {
+      const startT = performance.now();
+      const tick = () => {
+        const dt = performance.now() - startT;
+        const local = Math.min(1, dt / stepDur);
+        const pct = Math.round((stepStart + local * stepDur) / total * 100);
+        pctEl.textContent = String(pct).padStart(2,'0');
+        fillEl.style.width = pct + '%';
+        if (local < 1) requestAnimationFrame(tick); else resolve();
+      };
+      tick();
+    });
+    
+    ll.classList.remove('active');
+    ll.classList.add('done');
+    elapsed += stepDur;
+  }
+  
+  // Generate timeline and render a single frame preview
+  const tl = generateTimeline();
+  state.renderer = new VideoRenderer(previewCanvas, tl);
+  
+  // Preview: render frame at scene 3 middle
+  state.renderer.renderFrame(7.5);
+  stage.classList.add('ready');
+  overlay.style.display = 'none';
+  
+  // Auto proceed to step 4 after 800ms
+  setTimeout(() => goTo(4), 900);
+}
+
+// ================ STEP 4: RESULT PLAYER ================
+function setupResultPlayer() {
+  const canvas = document.getElementById('resultCanvas');
+  const tl = state.renderer ? state.renderer.timeline : generateTimeline();
+  state.renderer = new VideoRenderer(canvas, tl);
+  state.renderer.renderFrame(0.05);
+  
+  // Populate scene thumbs
+  const thumbsWrap = document.getElementById('sceneThumbs');
+  thumbsWrap.innerHTML = '';
+  tl.scenes.forEach((sc, i) => {
+    const d = document.createElement('div');
+    d.className = 'scene-thumb';
+    const sLabel = document.createElement('span'); sLabel.className = 'sn'; sLabel.textContent = '0' + (i+1);
+    const thumbCanvas = document.createElement('canvas');
+    thumbCanvas.width = 108; thumbCanvas.height = 192;
+    d.appendChild(thumbCanvas); d.appendChild(sLabel);
+    thumbsWrap.appendChild(d);
+    // Render thumb
+    const thumbRenderer = new VideoRenderer(thumbCanvas, tl);
+    thumbRenderer.renderFrame(sc.start + sc.duration/2);
+  });
+  
+  document.getElementById('timelineFill').style.width = '0%';
+  document.getElementById('resultPlayer').classList.remove('playing');
+}
+
+function playResult() {
+  const player = document.getElementById('resultPlayer');
+  player.classList.add('playing');
+  
+  // Init music
+  if (state.musicEngine) state.musicEngine.stop();
+  state.musicEngine = new MusicEngine(state.vibe);
+  state.musicEngine.start();
+  
+  state.renderer.currentTime = 0;
+  state.renderer.onTimeUpdate = (t) => {
+    document.getElementById('timelineFill').style.width = (t / 15 * 100) + '%';
+  };
+  state.renderer.onEnd = () => {
+    player.classList.remove('playing');
+    if (state.musicEngine) state.musicEngine.stop();
+    state.musicEngine = null;
+    document.getElementById('timelineFill').style.width = '0%';
+  };
+  state.renderer.play();
+}
+
+function regenerate() {
+  // Generate with a fresh seed → new photo order + camera variation
+  const newSeed = Math.random();
+  const tl = generateTimeline(newSeed);
+  state.renderer = new VideoRenderer(document.getElementById('resultCanvas'), tl);
+  state.renderer.regenerateGrain();
+  setupResultPlayer();
+}
+
+// ================ EXPORT / DOWNLOAD ================
+async function downloadVideo() {
+  const btn = document.getElementById('btnDownload');
+  btn.disabled = true;
+  btn.textContent = '录制中 0%';
+  
+  // Render at higher resolution for export
+  const exportCanvas = document.createElement('canvas');
+  exportCanvas.width = 1080;
+  exportCanvas.height = 1920;
+  const tl = state.renderer.timeline;
+  const exportRenderer = new VideoRenderer(exportCanvas, tl);
+  
+  // Create audio
+  const music = new MusicEngine(state.vibe);
+  
+  // Combine streams
+  const videoStream = exportCanvas.captureStream(30);
+  // Need to init audio context first
+  await music.start();
+  const audioTracks = music.dest.stream.getAudioTracks();
+  const combined = new MediaStream([
+    ...videoStream.getVideoTracks(),
+    ...audioTracks
+  ]);
+  
+  // MediaRecorder
+  let mimeType = 'video/webm;codecs=vp9,opus';
+  if (!MediaRecorder.isTypeSupported(mimeType)) {
+    mimeType = 'video/webm;codecs=vp8,opus';
+  }
+  if (!MediaRecorder.isTypeSupported(mimeType)) {
+    mimeType = 'video/webm';
+  }
+  
+  const recorder = new MediaRecorder(combined, { mimeType, videoBitsPerSecond: 5_000_000 });
+  const chunks = [];
+  recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
+  
+  const exportPromise = new Promise(resolve => {
+    recorder.onstop = () => {
+      const blob = new Blob(chunks, { type: 'video/webm' });
+      resolve(blob);
+    };
+  });
+  
+  recorder.start();
+  
+  // Play-render in real-time so MediaRecorder captures frames
+  exportRenderer.currentTime = 0;
+  exportRenderer.startTime = performance.now();
+  exportRenderer.playing = true;
+  
+  const renderLoop = (now) => {
+    if (!exportRenderer.playing) return;
+    exportRenderer.currentTime = (now - exportRenderer.startTime) / 1000;
+    const pct = Math.min(100, Math.round(exportRenderer.currentTime / 15 * 100));
+    btn.textContent = `录制中 ${pct}%`;
+    if (exportRenderer.currentTime >= 15) {
+      exportRenderer.playing = false;
+      exportRenderer.renderFrame(14.99);
+      setTimeout(() => {
+        recorder.stop();
+        music.stop();
+      }, 200);
+      return;
+    }
+    exportRenderer.renderFrame(exportRenderer.currentTime);
+    requestAnimationFrame(renderLoop);
+  };
+  requestAnimationFrame(renderLoop);
+  
+  const blob = await exportPromise;
+  state.videoBlob = blob;
+  
+  // Trigger download
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${state.brand || '广告'}_日产广告_${Date.now()}.webm`;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => {
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }, 1000);
+  
+  btn.disabled = false;
+  btn.textContent = '⬇ 再次下载';
+}
+
+// ================ FONT LOADING GUARD ================
+document.fonts.ready.then(() => {
+  console.log('[Daily Ads] Fonts loaded, engine ready.');
+});
+
+// Init
+updatePreviewThumbs();
+updatePreviewSummary();
+
+</script>
+
+</body>
+</html>
